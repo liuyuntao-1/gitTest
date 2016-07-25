@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\...\phpreport\", ".", "{670F0177-FA99-4FFE-8C31-34F0857FB529}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.VirtualPath = "/php"
+		Debug.AspNetCompiler.PhysicalPath = "C:\AppServ\www\php\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\php\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/php"
+		Release.AspNetCompiler.PhysicalPath = "C:\AppServ\www\php\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\php\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "4256"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{670F0177-FA99-4FFE-8C31-34F0857FB529}.Debug|.NET.ActiveCfg = Debug|.NET
+		{670F0177-FA99-4FFE-8C31-34F0857FB529}.Debug|.NET.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

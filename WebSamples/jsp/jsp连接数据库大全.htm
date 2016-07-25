@@ -1,0 +1,203 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>jsp 连接数据库大全</title>
+</head>
+
+<body>
+
+<p>现在有好多初学jsp的网友经常会问数据库怎么连接啊，怎么老出错啊？所以我集中的在这写篇文章供大家参考，其实这种把数据库逻辑全部放在jsp里未必是好的做法，但是有利于初学者学习，所以我就这样做了，当大家学到一定程度的时候，可以考虑用MVC的模式开发。在练习这些代码的时候，你一定将jdbc的驱动程序放到服务器的类路径里，然后要在数据库里建一个表test,有两个字段比如为test1，test2，可以用下面SQL建&nbsp;<br>
+create table test(test1 varchar(20),test2 varchar(20)&nbsp;<br>
+然后向这个表写入一条测试纪录&nbsp;</p>
+<p>那么现在开始我们的jsp和数据库之旅吧。&nbsp;</p>
+<p><br>
+<b>一、jsp连接Oracle8/8i/9i数据库（用thin模式）&nbsp;<br>
+</b>  testoracle.jsp如下：&nbsp;<br>
+&lt;%@ page contentType="text/html;charset=gb2312"%>&nbsp;<br>
+&lt;%@ page import="java.sql.*"%>&nbsp;<br>
+&lt;html>&nbsp;<br>
+&lt;body>&nbsp;<br>
+&lt;%Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();&nbsp;<br>
+String url="jdbc:oracle:thin:@localhost:1521:orcl";&nbsp;<br>
+//orcl为你的数据库的SID&nbsp;<br>
+String user="scott";&nbsp;<br>
+String password="tiger";&nbsp;<br>
+Connection conn= DriverManager.getConnection(url,user,password);&nbsp;<br>
+Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);&nbsp;<br>
+String sql="select * from test";&nbsp;<br>
+ResultSet rs=stmt.executeQuery(sql);&nbsp;<br>
+while(rs.next()) {%>&nbsp;<br>
+您的第一个字段内容为：&lt;%=rs.getString(1)%>&nbsp;<br>
+您的第二个字段内容为：&lt;%=rs.getString(2)%>&nbsp;<br>
+&lt;%}%>&nbsp;<br>
+&lt;%out.print("数据库操作成功，恭喜你");%>&nbsp;<br>
+&lt;%rs.close();&nbsp;<br>
+stmt.close();&nbsp;<br>
+conn.close();&nbsp;<br>
+%>&nbsp;<br>
+&lt;/body>&nbsp;<br>
+&lt;/html>&nbsp;</p>
+<p><b>二、jsp连接Sql Server7.0/2000数据库&nbsp;<br>
+</b>testsqlserver.jsp如下：&nbsp;<br>
+&lt;%@ page contentType="text/html;charset=gb2312"%>&nbsp;<br>
+&lt;%@ page import="java.sql.*"%>&nbsp;<br>
+&lt;html>&nbsp;<br>
+&lt;body>&nbsp;<br>
+&lt;%Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();&nbsp;<br>
+String url="jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=pubs";&nbsp;<br>
+//pubs为你的数据库的&nbsp;<br>
+String user="sa";&nbsp;<br>
+String password="";&nbsp;<br>
+Connection conn= DriverManager.getConnection(url,user,password);&nbsp;<br>
+Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);&nbsp;<br>
+String sql="select * from test";&nbsp;<br>
+ResultSet rs=stmt.executeQuery(sql);&nbsp;<br>
+while(rs.next()) {%>&nbsp;<br>
+您的第一个字段内容为：&lt;%=rs.getString(1)%>&nbsp;<br>
+您的第二个字段内容为：&lt;%=rs.getString(2)%>&nbsp;<br>
+&lt;%}%>&nbsp;<br>
+&lt;%out.print("数据库操作成功，恭喜你");%>&nbsp;<br>
+&lt;%rs.close();&nbsp;<br>
+stmt.close();&nbsp;<br>
+conn.close();&nbsp;<br>
+%>&nbsp;<br>
+&lt;/body>&nbsp;<br>
+&lt;/html>&nbsp;</p>
+<p><b>三、jsp连接DB2数据库&nbsp;<br>
+</b>testdb2.jsp如下：&nbsp;<br>
+&lt;%@ page contentType="text/html;charset=gb2312"%>&nbsp;<br>
+&lt;%@ page import="java.sql.*"%>&nbsp;<br>
+&lt;html>&nbsp;<br>
+&lt;body>&nbsp;<br>
+&lt;%Class.forName("com.ibm.db2.jdbc.app.DB2Driver ").newInstance();&nbsp;<br>
+String url="jdbc:db2://localhost:5000/sample";&nbsp;<br>
+//sample为你的数据库名&nbsp;<br>
+String user="admin";&nbsp;<br>
+String password="";&nbsp;<br>
+Connection conn= DriverManager.getConnection(url,user,password);&nbsp;<br>
+Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);&nbsp;<br>
+String sql="select * from test";&nbsp;<br>
+ResultSet rs=stmt.executeQuery(sql);&nbsp;<br>
+while(rs.next()) {%>&nbsp;<br>
+您的第一个字段内容为：&lt;%=rs.getString(1)%>&nbsp;<br>
+您的第二个字段内容为：&lt;%=rs.getString(2)%>&nbsp;<br>
+&lt;%}%>&nbsp;<br>
+&lt;%out.print("数据库操作成功，恭喜你");%>&nbsp;<br>
+&lt;%rs.close();&nbsp;<br>
+stmt.close();&nbsp;<br>
+conn.close();&nbsp;<br>
+%>&nbsp;<br>
+&lt;/body>&nbsp;<br>
+&lt;/html></p>
+<p><b>四、jsp连接Informix数据库&nbsp;<br>
+</b>testinformix.jsp如下：&nbsp;<br>
+&lt;%@ page contentType="text/html;charset=gb2312"%>&nbsp;<br>
+&lt;%@ page import="java.sql.*"%>&nbsp;<br>
+&lt;html>&nbsp;<br>
+&lt;body>&nbsp;<br>
+&lt;%Class.forName("com.informix.jdbc.IfxDriver").newInstance();&nbsp;<br>
+String url =&nbsp;<br>
+"jdbc:informix-sqli://123.45.67.89:1533/testDB:INFORMIXSERVER=myserver;&nbsp;<br>
+user=testuser;password=testpassword";&nbsp;<br>
+//testDB为你的数据库名&nbsp;<br>
+Connection conn= DriverManager.getConnection(url);&nbsp;<br>
+Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);&nbsp;<br>
+String sql="select * from test";&nbsp;<br>
+ResultSet rs=stmt.executeQuery(sql);&nbsp;<br>
+while(rs.next()) {%>&nbsp;<br>
+您的第一个字段内容为：&lt;%=rs.getString(1)%>&nbsp;<br>
+您的第二个字段内容为：&lt;%=rs.getString(2)%>&nbsp;<br>
+&lt;%}%>&nbsp;<br>
+&lt;%out.print("数据库操作成功，恭喜你");%>&nbsp;<br>
+&lt;%rs.close();&nbsp;<br>
+stmt.close();&nbsp;<br>
+conn.close();&nbsp;<br>
+%>&nbsp;<br>
+&lt;/body>&nbsp;<br>
+&lt;/html>&nbsp;</p>
+<p><b>五、jsp连接Sybase数据库&nbsp;<br>
+</b>testmysql.jsp如下：&nbsp;<br>
+&lt;%@ page contentType="text/html;charset=gb2312"%>&nbsp;<br>
+&lt;%@ page import="java.sql.*"%>&nbsp;<br>
+&lt;html>&nbsp;<br>
+&lt;body>&nbsp;<br>
+&lt;%Class.forName("com.sybase.jdbc.SybDriver").newInstance();&nbsp;<br>
+String url =" jdbc:sybase:Tds:localhost:5007/tsdata";&nbsp;<br>
+//tsdata为你的数据库名&nbsp;<br>
+Properties sysProps = System.getProperties();&nbsp;<br>
+SysProps.put("user","userid");&nbsp;<br>
+SysProps.put("password","user_password");&nbsp;<br>
+Connection conn= DriverManager.getConnection(url, SysProps);&nbsp;<br>
+Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);&nbsp;<br>
+String sql="select * from test";&nbsp;<br>
+ResultSet rs=stmt.executeQuery(sql);&nbsp;<br>
+while(rs.next()) {%>&nbsp;<br>
+您的第一个字段内容为：&lt;%=rs.getString(1)%>&nbsp;<br>
+您的第二个字段内容为：&lt;%=rs.getString(2)%>&nbsp;<br>
+&lt;%}%>&nbsp;<br>
+&lt;%out.print("数据库操作成功，恭喜你");%>&nbsp;<br>
+&lt;%rs.close();&nbsp;<br>
+stmt.close();&nbsp;<br>
+conn.close();&nbsp;<br>
+%>&nbsp;<br>
+&lt;/body>&nbsp;<br>
+&lt;/html>&nbsp;</p>
+<p><b>六、jsp连接MySQL数据库&nbsp;<br>
+</b>testmysql.jsp如下：&nbsp;<br>
+&lt;%@ page contentType="text/html;charset=gb2312"%>&nbsp;<br>
+&lt;%@ page import="java.sql.*"%>&nbsp;<br>
+&lt;html>&nbsp;<br>
+&lt;body>&nbsp;<br>
+&lt;%Class.forName("org.gjt.mm.mysql.Driver").newInstance();&nbsp;<br>
+String url ="jdbc:mysql://localhost/softforum?user=soft&amp;password=soft1234&amp;useUnicode=true&amp;characterEncoding=8859_1"&nbsp;<br>
+//testDB为你的数据库名&nbsp;<br>
+Connection conn= DriverManager.getConnection(url);&nbsp;<br>
+Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);&nbsp;<br>
+String sql="select * from test";&nbsp;<br>
+ResultSet rs=stmt.executeQuery(sql);&nbsp;<br>
+while(rs.next()) {%>&nbsp;<br>
+您的第一个字段内容为：&lt;%=rs.getString(1)%>&nbsp;<br>
+您的第二个字段内容为：&lt;%=rs.getString(2)%>&nbsp;<br>
+&lt;%}%>&nbsp;<br>
+&lt;%out.print("数据库操作成功，恭喜你");%>&nbsp;<br>
+&lt;%rs.close();&nbsp;<br>
+stmt.close();&nbsp;<br>
+conn.close();&nbsp;<br>
+%>&nbsp;<br>
+&lt;/body>&nbsp;<br>
+&lt;/html>&nbsp;</p>
+<p><b>七、jsp连接PostgreSQL数据库&nbsp;<br>
+</b>testmysql.jsp如下：&nbsp;<br>
+&lt;%@ page contentType="text/html;charset=gb2312"%>&nbsp;<br>
+&lt;%@ page import="java.sql.*"%>&nbsp;<br>
+&lt;html>&nbsp;<br>
+&lt;body>&nbsp;<br>
+&lt;%Class.forName("org.postgresql.Driver").newInstance();&nbsp;<br>
+String url ="jdbc:postgresql://localhost/soft"&nbsp;<br>
+//soft为你的数据库名&nbsp;<br>
+String user="myuser";&nbsp;<br>
+String password="mypassword";&nbsp;<br>
+Connection conn= DriverManager.getConnection(url,user,password);&nbsp;<br>
+Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);&nbsp;<br>
+String sql="select * from test";&nbsp;<br>
+ResultSet rs=stmt.executeQuery(sql);&nbsp;<br>
+while(rs.next()) {%>&nbsp;<br>
+您的第一个字段内容为：&lt;%=rs.getString(1)%>&nbsp;<br>
+您的第二个字段内容为：&lt;%=rs.getString(2)%>&nbsp;<br>
+&lt;%}%>&nbsp;<br>
+&lt;%out.print("数据库操作成功，恭喜你");%>&nbsp;<br>
+&lt;%rs.close();&nbsp;<br>
+stmt.close();&nbsp;<br>
+conn.close();&nbsp;<br>
+%>&nbsp;<br>
+&lt;/body>&nbsp;<br>
+&lt;/html> <br>
+</p>
+
+</body>
+
+</html>
+ 

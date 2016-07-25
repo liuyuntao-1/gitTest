@@ -1,0 +1,4 @@
+﻿1、DisplayViewReport.htm：查询显示方式展现报表
+2、PrintViewReport.htm：打印显示方式展现报表
+3、DisplayViewReportEx.htm：查询显示方式展现报表，调用 CreateDisplayViewerEx 函数，在参数中可以设置查询显示插件的属性，修改插件运行行为，属性的具体说明请在帮助文档中查阅 IGRDisplayViewer 接口。
+4、PrintViewReportEx.htm：打印显示方式展现报表，调用 CreatePrintViewerEx 函数，在参数中可以设置打印显示插件的属性，修改插件运行行为，属性的具体说明请在帮助文档中查阅 IGRPrintViewer 接口。

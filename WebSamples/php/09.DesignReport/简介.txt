@@ -1,0 +1,6 @@
+﻿应用报表设计器控件可视化设计报表
+
+1、DesignReport.htm：重新设计一个已经存在的报表。
+2、DesignNewReport.htm：重计一个新报表。
+3、CustomDesignReport.htm：通过响应事件，自定义工具栏上的打开与保存这两个按钮的行为。
+

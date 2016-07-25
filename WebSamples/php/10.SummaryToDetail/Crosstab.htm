@@ -1,0 +1,61 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 演示交叉表穿透查询明戏报表</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+function OnContentCellDblClick(Sender) //响应内容行双击事件，打开当前行对应的明细报表 
+{
+    //交叉表应该从 RunningDetailGrid 取穿透数据
+    var RunningDetailGrid = ReportViewer.Report.RunningDetailGrid;
+    var ProductID = RunningDetailGrid.Recordset.Fields.Item("ProductID").AsInteger;
+    
+    //这里取出SelMonthText而不用，仅为了示范如何取到横向交叉的数据
+	var SelColumn = RunningDetailGrid.Columns.Item(ReportViewer.SelColumnName);
+	var SelMonthText = SelColumn.TitleCell.Text;
+	//alert(SelMonthText);
+	
+	//根据选中的列序号，确定是那月，如果是首列或最后的合计列，则穿透到全年
+    var BeginDate;
+    var EndDate;
+	var SelColNo = ReportViewer.SelColumnNo;
+	if (SelColNo==0 || SelColNo>12)
+	{
+        BeginDate = "1997-1-1";
+        EndDate = "1997-12-31";
+	}
+	else
+	{
+	    var Month = SelColNo;
+	    
+        var MonthDays = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+	    var EndDay = MonthDays[SelColNo-1];
+	    
+	    //公元纪年的年数可以被四整除，即为闰年；被100整除而不能被400整除为平年；被100整除也可被400整除的为闰年。如2000年是闰年，而1900年不是。
+	    var Year = 1997;
+	    if ( (Month == 2) && (Year%4==0) && ((Year%100!=0) || (Year%400==0)) )
+	        EndDay = 29;
+	        
+        BeginDate = "1997-" + Month + "-1";
+        EndDate = "1997-" + Month + "-" + EndDay;
+	}
+	
+	//根据参数打开对应明细报表
+    var URL = "Detail.php?ProductID=" + ProductID + "&BeginDate='" + BeginDate + "'&EndDate='" + EndDate + "'";
+	window.open(URL, "_blank");
+}
+	</script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0">
+	<script type="text/javascript"> 
+		CreateDisplayViewerEx("100%", "100%", "Crosstab.grf", "xmlCrosstab.php", true, 
+		    "<param name=RowSelection value=false> <param name='OnContentCellDblClick' value='OnContentCellDblClick'>");
+	</script>
+</body>
+</html>

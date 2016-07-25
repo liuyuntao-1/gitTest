@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B000121A-894B-42AD-A339-A239A8D54280}</ProjectGuid>
+    <ProjectTypeGuids>{563295b5-8906-4a76-be2d-ff8e711c1204};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LSVWGPT</RootNamespace>
+    <AssemblyName>LSVWGPT</AssemblyName>
+    <StartPageUrl>Form1.wgx</StartPageUrl>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartPageUrl>Form1.wgx</StartPageUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gizmox.WebGUI.Common, Version=4.6.5701.0, Culture=neutral, PublicKeyToken=263fa4ef694acff6, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gizmox.WebGUI.Forms.Themes, Version=4.6.5701.0, Culture=neutral, PublicKeyToken=263fa4ef694acff6, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gizmox.WebGUI.Forms, Version=4.6.5701.0, Culture=neutral, PublicKeyToken=c508b41386c60f1d, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gizmox.WebGUI.Server, Version=4.6.5701.0, Culture=neutral, PublicKeyToken=3de6eb684226c24d, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GRBB\js\GRBB.js" />
+    <Content Include="GRBB\js\test.js" />
+    <Content Include="GRBB\YgBB.aspx" />
+    <Content Include="GRBB\YgBBa.aspx" />
+    <Content Include="GRBB\YgBBb.aspx" />
+    <Content Include="GRBB\YgBBData.aspx" />
+    <Content Include="GRBB\js\CreateControl.js" />
+    <Content Include="GRBB\js\GRInstall.js" />
+    <Content Include="GRBB\js\GRUtility.js" />
+    <Content Include="Readme.txt" />
+    <Content Include="Resources\Icons\Actions\DefaultPW.ico" />
+    <Content Include="Resources\Icons\Actions\Delete.ico" />
+    <Content Include="Resources\Icons\Actions\FuncsModule.ico" />
+    <Content Include="Resources\Icons\Actions\logout16.ico" />
+    <Content Include="Resources\Icons\Actions\New.ico" />
+    <Content Include="Resources\Icons\Actions\NewChild.ico" />
+    <Content Include="Resources\Icons\Actions\RecDel.ICO" />
+    <Content Include="Resources\Icons\Actions\RecDetail.ico" />
+    <Content Include="Resources\Icons\Actions\RecEdit.ico" />
+    <Content Include="Resources\Icons\Actions\RecNew.ico" />
+    <Content Include="Resources\Icons\Actions\Refresh.ico" />
+    <Content Include="Resources\Icons\Actions\Save.ico" />
+    <Content Include="Resources\Icons\Folders\close.png" />
+    <Content Include="Resources\Icons\Folders\Folder_yellow_close_16.ico" />
+    <Content Include="Resources\Icons\Folders\Folder_yellow_open_16.ico" />
+    <Content Include="Resources\Icons\Folders\open.png" />
+    <Content Include="Resources\Images\LESU_LOGO.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\ClsFuncsA.cs" />
+    <Compile Include="Controls\UCFuncsTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCFuncsTree.Designer.cs">
+      <DependentUpon>UCFuncsTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\DSJckj.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSJckj.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPractice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPractice.Designer.cs">
+      <DependentUpon>FrmPractice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GRBB\YgBB.aspx.cs">
+      <DependentUpon>YgBB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GRBB\YgBB.aspx.designer.cs">
+      <DependentUpon>YgBB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GRBB\YgBBa.aspx.cs">
+      <DependentUpon>YgBBa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GRBB\YgBBa.aspx.designer.cs">
+      <DependentUpon>YgBBa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GRBB\YgBBb.aspx.cs">
+      <DependentUpon>YgBBb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GRBB\YgBBb.aspx.designer.cs">
+      <DependentUpon>YgBBb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GRBB\YgBBData.aspx.cs">
+      <DependentUpon>YgBBData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GRBB\YgBBData.aspx.designer.cs">
+      <DependentUpon>YgBBData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GRBB\js\MssqlReportData.cs" />
+    <Compile Include="GRBB\js\ReportData.cs" />
+    <Compile Include="Login\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\FrmBBTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test\FrmBBTest.Designer.cs">
+      <DependentUpon>FrmBBTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmConfig.Designer.cs">
+      <DependentUpon>FrmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmJGGL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmJGGL.Designer.cs">
+      <DependentUpon>FrmJGGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmMKGL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmMKGL.Designer.cs">
+      <DependentUpon>FrmMKGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmOptionLBLB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmOptionLBLB.Designer.cs">
+      <DependentUpon>FrmOptionLBLB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmOptionLBXX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmOptionLBXX.Designer.cs">
+      <DependentUpon>FrmOptionLBXX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmOptionXMXX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmOptionXMXX.Designer.cs">
+      <DependentUpon>FrmOptionXMXX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmRoleFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmRoleFuncs.Designer.cs">
+      <DependentUpon>FrmRoleFuncs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmRolesLB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmRolesLB.Designer.cs">
+      <DependentUpon>FrmRolesLB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmRolesXX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmRolesXX.Designer.cs">
+      <DependentUpon>FrmRolesXX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmYgLB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmYgLB.Designer.cs">
+      <DependentUpon>FrmYgLB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmYgXX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmYgXX.Designer.cs">
+      <DependentUpon>FrmYgXX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmYuanGongLB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmYuanGongLB.Designer.cs">
+      <DependentUpon>FrmYuanGongLB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XTGL\FrmYuanGongXX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XTGL\FrmYuanGongXX.Designer.cs">
+      <DependentUpon>FrmYuanGongXX.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Controls\UCFuncsTree.resx">
+      <DependentUpon>UCFuncsTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPractice.resx">
+      <DependentUpon>FrmPractice.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test\FrmBBTest.resx">
+      <DependentUpon>FrmBBTest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmConfig.resx">
+      <DependentUpon>FrmConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmJGGL.resx">
+      <DependentUpon>FrmJGGL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmMKGL.resx">
+      <DependentUpon>FrmMKGL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmOptionLBLB.resx">
+      <DependentUpon>FrmOptionLBLB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmOptionLBXX.resx">
+      <DependentUpon>FrmOptionLBXX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmOptionXMXX.resx">
+      <DependentUpon>FrmOptionXMXX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmRoleFuncs.resx">
+      <DependentUpon>FrmRoleFuncs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmRolesLB.resx">
+      <DependentUpon>FrmRolesLB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmRolesXX.resx">
+      <DependentUpon>FrmRolesXX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmYgLB.resx">
+      <DependentUpon>FrmYgLB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmYgXX.resx">
+      <DependentUpon>FrmYgXX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmYuanGongLB.resx">
+      <DependentUpon>FrmYuanGongLB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XTGL\FrmYuanGongXX.resx">
+      <DependentUpon>FrmYuanGongXX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Datasets\DSJckj.xsc">
+      <DependentUpon>DSJckj.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\DSJckj.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSJckj.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\DSJckj.xss">
+      <DependentUpon>DSJckj.xsd</DependentUpon>
+    </Content>
+    <Content Include="GRBB\grf\ygbb1.grf" />
+    <Content Include="GRBB\grf\ygbb2.grf" />
+    <None Include="Web.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GRBB\js\grinstall\" />
+    <Folder Include="Resources\Generated\" />
+    <Folder Include="Resources\UserData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JXC\JXC.csproj">
+      <Project>{db433ca2-fb6a-4f0b-afc7-2c4a3aa2451c}</Project>
+      <Name>JXC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LSLib\LSLib.csproj">
+      <Project>{101080c4-6502-4949-90d1-fe725c396d1e}</Project>
+      <Name>LSLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="gregn6Lib">
+      <Guid>{4018F953-1BFE-441E-8A04-DC8BA1FF060E}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v14.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Condition="" Project="$(MSBuildExtensionsPath)\Gizmox\v14.0\Net4.6\Gizmox.VWGApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2200</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2200/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

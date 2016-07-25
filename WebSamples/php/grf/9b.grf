@@ -1,0 +1,553 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='9a.自由表格'
+	Author='锐浪报表软件'
+	Description='用自由表格部件编制自由表格。'
+	Object Font
+		Name='宋体'
+		Size=105000,0
+		Weight=400
+		Charset=134
+	End
+	ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=C:\\Grid++Report 6\\Samples\\Data\\Northwind.mdb'
+	QuerySQL='select * from Employees\r\nwhere EmployeeID=8'
+	Object Printer
+		BottomMargin=2.43417
+	End
+	Object DetailGrid
+		Object Border
+			Styles=[DrawLeft|DrawRight|DrawBottom]
+			Object Pen
+				Width=2
+			End
+		End
+		Object Recordset
+			QuerySQL='select * from Employees\r\nwhere EmployeeID<8\r\norder by EmployeeID'
+			Items Field
+				Item
+					Name='EmployeeID'
+					Type=Integer
+				End
+				Item
+					Name='LastName'
+				End
+				Item
+					Name='FirstName'
+				End
+				Item
+					Name='Title'
+				End
+				Item
+					Name='TitleOfCourtesy'
+				End
+				Item
+					Name='BirthDate'
+					Type=DateTime
+					Format='yy/MM/dd'
+				End
+				Item
+					Name='HireDate'
+					Type=DateTime
+				End
+				Item
+					Name='Address'
+				End
+				Item
+					Name='City'
+				End
+				Item
+					Name='Region'
+				End
+				Item
+					Name='PostalCode'
+				End
+				Item
+					Name='Country'
+				End
+				Item
+					Name='HomePhone'
+				End
+				Item
+					Name='Extension'
+				End
+				Item
+					Name='Photo'
+					Type=Binary
+				End
+				Item
+					Name='Notes'
+				End
+				Item
+					Name='ReportsTo'
+					Type=Integer
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='Column1'
+				Width=1.34938
+			End
+			Item
+				Name='Column2'
+				Width=1.79917
+			End
+			Item
+				Name='Column3'
+				Width=1.98438
+			End
+			Item
+				Name='Column4'
+				Width=2.01083
+			End
+			Item
+				Name='Column5'
+				Width=2.54
+			End
+			Item
+				Name='Column6'
+				Width=5.87375
+			End
+		End
+		Object ColumnContent
+			Height=0.79375
+			Items ColumnContentCell
+				Item
+					Column='Column1'
+					FreeCell=T
+					Items Control
+						Item
+							Type=StaticBox
+							Name='StaticBox7'
+							Dock=Fill
+							Width=1.32292
+							Height=0.767292
+							CanGrow=T
+							TextAlign=MiddleCenter
+							Text='家\r\n庭\r\n主\r\n要\r\n成\r\n员\r\n及\r\n重\r\n要\r\n社\r\n会\r\n关\r\n系'
+						End
+					End
+				End
+				Item
+					Column='Column2'
+					TextAlign=MiddleCenter
+					DataField='TitleOfCourtesy'
+				End
+				Item
+					Column='Column3'
+					FreeCell=T
+					Items Control
+						Item
+							Type=MemoBox
+							Name='MemoBox1'
+							Dock=Fill
+							Width=1.95792
+							Height=0.767292
+							Text='[#LastName#][#FirstName#]'
+						End
+					End
+				End
+				Item
+					Column='Column4'
+					DataField='BirthDate'
+				End
+				Item
+					Column='Column5'
+					DataField='Title'
+				End
+				Item
+					Column='Column6'
+					DataField='Address'
+				End
+			End
+		End
+		Object ColumnTitle
+			Height=0
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='Column1'
+					TextAlign=MiddleCenter
+					Text='Column1'
+				End
+				Item
+					GroupTitle=F
+					Column='Column2'
+					TextAlign=MiddleCenter
+					Text='Column2'
+				End
+				Item
+					GroupTitle=F
+					Column='Column3'
+					TextAlign=MiddleCenter
+					Text='Column3'
+				End
+				Item
+					GroupTitle=F
+					Column='Column4'
+					TextAlign=MiddleCenter
+					Text='Column4'
+				End
+				Item
+					GroupTitle=F
+					Column='Column5'
+					TextAlign=MiddleCenter
+					Text='Column5'
+				End
+				Item
+					GroupTitle=F
+					Column='Column6'
+					TextAlign=MiddleCenter
+					Text='Column6'
+				End
+			End
+		End
+		Items Group
+			Item
+				Name='Group2'
+				Object GroupHeader
+					Height=0.635
+					OccupyColumn=T
+					OccupiedColumns='Column1'
+					VAlign=Middle
+				End
+				Object GroupFooter
+					Height=0
+				End
+			End
+			Item
+				Name='Group1'
+				Object GroupHeader
+					Height=1.00542
+					Items Control
+						Item
+							Type=StaticBox
+							Name='StaticBox2'
+							AlignColumn='Column2'
+							Left=1.34938
+							Width=1.79917
+							Height=1.00542
+							Object Border
+								Styles=[DrawRight]
+							End
+							TextAlign=MiddleCenter
+							Text='称 谓'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox3'
+							AlignColumn='Column3'
+							Left=3.14854
+							Width=1.98438
+							Height=1.00542
+							Object Border
+								Styles=[DrawRight]
+							End
+							TextAlign=MiddleCenter
+							Text='姓  名'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox4'
+							AlignColumn='Column4'
+							Left=5.13292
+							Width=2.01083
+							Height=1.00542
+							Object Border
+								Styles=[DrawRight]
+							End
+							TextAlign=MiddleCenter
+							Text='年 龄'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox5'
+							AlignColumn='Column5'
+							Left=7.14375
+							Width=2.54
+							Height=1.00542
+							Object Border
+								Styles=[DrawRight]
+							End
+							TextAlign=MiddleCenter
+							Text='政 治\r\n面 貌'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox6'
+							AlignColumn='Column6'
+							Left=9.68375
+							Width=5.87375
+							Height=1.00542
+							Object Border
+								Styles=[DrawRight]
+							End
+							TextAlign=MiddleCenter
+							Text='工 作 单 位 及 职 务'
+						End
+					End
+				End
+				Object GroupFooter
+					Height=0
+				End
+			End
+		End
+	End
+	Items Parameter
+		Item
+			Name='EmployeeID'
+			DataType=Integer
+		End
+		Item
+			Name='LastName'
+		End
+		Item
+			Name='FirstName'
+		End
+		Item
+			Name='Title'
+		End
+		Item
+			Name='TitleOfCourtesy'
+		End
+		Item
+			Name='BirthDate'
+			DataType=DateTime
+			Format='yyyy年MM月dd日'
+		End
+		Item
+			Name='HireDate'
+			DataType=DateTime
+			Format='yyyy年MM月dd日'
+		End
+		Item
+			Name='Address'
+		End
+		Item
+			Name='City'
+		End
+		Item
+			Name='Region'
+		End
+		Item
+			Name='PostalCode'
+		End
+		Item
+			Name='Country'
+		End
+		Item
+			Name='HomePhone'
+		End
+		Item
+			Name='Extension'
+		End
+		Item
+			Name='ReportsTo'
+			DataType=Integer
+		End
+	End
+	Items ReportHeader
+		Item
+			Name='ReportHeader2'
+			Height=7.80521
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox1'
+					Center=Horizontal
+					Left=4.63021
+					Top=0.396875
+					Width=6.77333
+					Height=0.687917
+					Object Font
+						Name='宋体'
+						Size=180000,0
+						Bold=T
+						Charset=134
+					End
+					Text='人 员 基 本 情 况 表'
+				End
+				Item
+					Type=FreeGrid
+					Name='FreeGrid1'
+					Top=1.29646
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight]
+						Object Pen
+							Width=2
+						End
+					End
+					ColumnCount=7
+					RowCount=7
+					Items FreeGridColumn
+						Item[1]
+							Width=1.34938
+						End
+						Item[2]
+							Width=1.85208
+						End
+						Item[3]
+							Width=1.32292
+						End
+						Item[4]
+							Width=3.25438
+						End
+						Item[5]
+							Width=1.95792
+						End
+						Item[6]
+							Width=2.77813
+						End
+						Item[7]
+							Width=3.06917
+						End
+					End
+					Items FreeGridRow
+						Item[1]
+							Height=0.95
+						End
+						Item[2]
+							Height=0.95
+						End
+						Item[3]
+							Height=0.95
+						End
+						Item[4]
+							Height=0.95
+						End
+						Item[5]
+							Height=0.95
+						End
+						Item[6]
+							Height=0.95
+						End
+						Item[7]
+							Height=0.767292
+						End
+					End
+					Items FreeGridCell
+						Item[1,1]
+							TextAlign=MiddleCenter
+							Text='姓 名'
+						End
+						Item[1,2]
+							Text='[#{LastName}#][#{FirstName}#]'
+						End
+						Item[1,3]
+							TextAlign=MiddleCenter
+							Text='性 别'
+						End
+						Item[1,4]
+							Text='[#{TitleOfCourtesy}#]'
+						End
+						Item[1,5]
+							TextAlign=MiddleCenter
+							Text='出生日期'
+						End
+						Item[1,6]
+							Text='[#{BirthDate}#]'
+						End
+						Item[1,7]
+							FreeCell=T
+							Items Control
+								Item
+									Type=PictureBox
+									Name='photo'
+									Dock=Fill
+									Width=3.04271
+									Height=3.78354
+									SizeMode=Stretch
+								End
+							End
+							RowSpan=4
+						End
+						Item[2,1]
+							TextAlign=MiddleCenter
+							Text='民 族'
+						End
+						Item[2,3]
+							TextAlign=MiddleCenter
+							Text='籍 贯'
+						End
+						Item[2,4]
+							Text='[#{City}#]'
+						End
+						Item[2,5]
+							TextAlign=MiddleCenter
+							Text='出 生 地'
+						End
+						Item[2,6]
+							Text='[#{Address}#]'
+						End
+						Item[3,1]
+							TextAlign=MiddleCenter
+							Text='入 党\r\n时 间'
+						End
+						Item[3,3]
+							Text='参加工\r\n作时间'
+						End
+						Item[3,4]
+							Text='[#{HireDate}#]'
+						End
+						Item[4,1]
+							TextAlign=MiddleCenter
+							Text='专业技\r\n术职务'
+						End
+						Item[4,2]
+							Text='[#{Title}#]'
+							ColSpan=2
+						End
+						Item[5,1]
+							TextAlign=MiddleCenter
+							Text='学历\r\n学位'
+							RowSpan=2
+						End
+						Item[5,2]
+							TextAlign=MiddleCenter
+							Text='全日制\r\n教育'
+						End
+						Item[5,3]
+							ColSpan=2
+						End
+						Item[5,5]
+							TextAlign=MiddleCenter
+							Text='毕业院校\r\n系及专业'
+						End
+						Item[5,6]
+							ColSpan=2
+						End
+						Item[6,2]
+							TextAlign=MiddleCenter
+							Text='在职\r\n教育'
+						End
+						Item[6,3]
+							ColSpan=2
+						End
+						Item[6,5]
+							TextAlign=MiddleCenter
+							Text='毕业院校\r\n系及专业'
+						End
+						Item[6,6]
+							ColSpan=2
+						End
+						Item[7,1]
+							Text='现  任  职  务'
+							BorderCustom=T
+							Object Border
+								Styles=[DrawRight|DrawBottom]
+							End
+							ColSpan=2
+						End
+						Item[7,3]
+							BorderCustom=T
+							Object Border
+								Styles=[DrawBottom]
+							End
+							ColSpan=5
+						End
+					End
+				End
+			End
+		End
+	End
+End

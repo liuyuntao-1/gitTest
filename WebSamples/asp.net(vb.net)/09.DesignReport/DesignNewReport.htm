@@ -1,0 +1,24 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 创建一个新报表</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0">
+	<script type="text/javascript"> 
+	    //创建一个新报表，在完成报表设计后，将报表保存在web服务器上
+	    //其中的“NewReport.grf”可以参数化，指定新报表保存的文件
+	    CreateDesignerEx("100%", "100%", "", "../General/DesignReportSave.aspx?Report=NewReport.grf", "", "");  //用于按服务器地址注册方式 
+	    
+	    //WEB无限分发需要在模板文件中写入注册信息，所以应该从一个空白的已注册的模板文件中引入
+	    //注册信息,下面参数"RegisteredBlankReport.grf"就是空白注册模板文件
+	    //CreateDesignerEx("100%", "100%", "../grf/RegisteredBlankReport.grf", "../General/DesignReportSave.aspx?Report=NewReport.grf", "", ""); //用于无限分发版
+	</script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='7-3e.脚本.自定义条件分组'
+	Author='锐浪报表软件'
+	Description='不是根据某一个或多个字段的值的变化产生分组，而是根据自定的规则产生分组，这里是根据值的范围产生不同的分组。'
+	Object Font
+		Name='宋体'
+		Size=105000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+	End
+	Object ImageList
+		Image=-894
+AAABAAEAEBAAMjY3MDFoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAAAMAAEdGbGVtaW5nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgAABgAABgAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgAAp/8Ap/8Ap/8Ap/8AjvAA
+BgAABgAAAAAAAAAAAAAAAAAAAAAAAAAABgAAxP8AxP8Av/8Av/8Av/8Av/8Av/8AxP8AjvAABgAAAAAAAAAAAAAAAAAABgAAxP8AxP8A4P8A5v8A5v8A5v8A5v8A4P8A
+v/8AxP8AjvAABgAAAAAAAAAAAAAABgAAxP8A5v8A5v8ABgAABgAABgAABgAABgAA4P8Av/8AxP8ABgAAAAAAAAAABgAAxP8A5v8A5v8ABgAA5v8A5v8A5v8A5v8A5v8A
+BgAA4P8Av/8AjvAABgAAAAAABgAL/P8A5v8ABgAA5v8A5v8A5v8A5v8A5v8A5v8A5v8ABgAAv/8Ap/8ABgAAAAAABgBf/v8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A
+5v8A5v8Av/8Ap/8ABgAAAAAABgBf/v8L/P8A5v8A5v8ABgAA5v8A5v8A5v8ABgAA5v8A5v8Av/8Ap/8ABgAAAAAABgCT//8L/P8A5v8A5v8ABgAA5v8A5v8A5v8ABgAA
+5v8A5v8Av/8AjvAABgAAAAAAAAAABgBf/v8L/P8A5v8ABgAA5v8A5v8A5v8ABgAA5v8A5v8AxP8ABgAAAAAAAAAAAAAABgCT//9f/v8L/P8A5v8A5v8A5v8A5v8A5v8A
+5v8AxP8AjvAABgAAAAAAAAAAAAAAAAAABgDP//+T//8L/P8L/P8A5v8A5v8A5v8AxP8AjvAABgAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgDP//+T//9f/v9f/v8AxP8A
+BgAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgAABgAABgAABgAAAAAAAAAAAAAAAAAAAAD//////B////AH///gA///wAH//8AB//+AAP//gAD//4AA
+//+AAP//gAD//8AB///AAf//4AP///AH///8H///
+		Image=-894
+AAABAAEAEBAAMjY3MDFoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAAAMAAEdGbGVtaW5nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgAABgAABgAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgAAp/8Ap/8Ap/8Ap/8AjvAA
+BgAABgAAAAAAAAAAAAAAAAAAAAAAAAAABgAAxP8AxP8Av/8Av/8Av/8Av/8Av/8AxP8AjvAABgAAAAAAAAAAAAAAAAAABgAAxP8AxP8A4P8A5v8A5v8A5v8A5v8A4P8A
+v/8AxP8AjvAABgAAAAAAAAAAAAAABgAAxP8A5v8A5v8A4P8ALwAABgAALwAA4P8A4P8Av/8AxP8ABgAAAAAAAAAABgAAxP8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A
+5v8A4P8Av/8AjvAABgAAAAAABgAL/P8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A5v8Av/8Ap/8ABgAAAAAABgBf/v8A5v8A5v8A5v8ABgAA5v8A5v8A5v8ABgAA
+5v8A5v8Av/8Ap/8ABgAAAAAABgBf/v8L/P8A5v8A5v8ABgAA5v8A5v8A5v8ABgAA5v8A5v8Av/8Ap/8ABgAAAAAABgCT//8L/P8A5v8A5v8ABgAA5v8A5v8A5v8ABgAA
+5v8A5v8Av/8AjvAABgAAAAAAAAAABgBf/v8L/P8A5v8ABgAA5v8A5v8A5v8ABgAA5v8A5v8AxP8ABgAAAAAAAAAAAAAABgCT//9f/v8L/P8A5v8A5v8A5v8A5v8A5v8A
+5v8AxP8AjvAABgAAAAAAAAAAAAAAAAAABgDP//+T//8L/P8L/P8A5v8A5v8A5v8AxP8AjvAABgAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgDP//+T//9f/v9f/v8AxP8A
+BgAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgAABgAABgAABgAAAAAAAAAAAAAAAAAAAAD//////B////AH///gA///wAH//8AB//+AAP//gAD//4AA
+//+AAP//gAD//8AB///AAf//4AP///AH///8H///
+		Image=-894
+AAABAAEAEBAAMjY3MDFoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAAAMAAEdGbGVtaW5nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgAABgAABgAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgAAp/8Ap/8Ap/8Ap/8AjvAA
+BgAABgAAAAAAAAAAAAAAAAAAAAAAAAAABgAAxP8AxP8Av/8Av/8Av/8Av/8Av/8AxP8AjvAABgAAAAAAAAAAAAAAAAAABgAAxP8AxP8ABgAA5v8A5v8A5v8A5v8A4P8A
+BgAAxP8AjvAABgAAAAAAAAAAAAAABgAAxP8A5v8A5v8ABgAABgAABgAABgAABgAA4P8Av/8AxP8ABgAAAAAAAAAABgAAxP8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A
+5v8A4P8Av/8AjvAABgAAAAAABgAL/P8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A5v8A5v8Av/8Ap/8ABgAAAAAABgBf/v8A5v8A5v8ABgAABgAA5v8A5v8A5v8ABgAA
+BgAA5v8Av/8Ap/8ABgAAAAAABgBf/v8L/P8A5v8A5v8ABgAA5v8A5v8A5v8ABgAA5v8A5v8Av/8Ap/8ABgAAAAAABgCT//8L/P8ABgAA5v8ABgAA5v8A5v8A5v8ABgAA
+5v8ABgAAv/8AjvAABgAAAAAAAAAABgBf/v8L/P8ABgAA5v8A5v8A5v8A5v8A5v8ABgAA5v8AxP8ABgAAAAAAAAAAAAAABgCT//9f/v8L/P8ABgAA5v8A5v8A5v8ABgAA
+5v8AxP8AjvAABgAAAAAAAAAAAAAAAAAABgDP//+T//8L/P8L/P8A5v8A5v8A5v8AxP8AjvAABgAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgDP//+T//9f/v9f/v8AxP8A
+BgAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAABgAABgAABgAABgAAAAAAAAAAAAAAAAAAAAD//////B////AH///gA///wAH//8AB//+AAP//gAD//4AA
+//+AAP//gAD//8AB///AAf//4AP///AH///8H///
+	End
+	Object DetailGrid
+		CenterView=T
+		Object Recordset
+			ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=..\\Data\\Northwind.mdb'
+			QuerySQL='select d.ProductID,p.ProductName,sum(d.UnitPrice*d.quantity) as amount\r\nfrom OrderDetails d inner join Products p on p.Productid=d.Productid\r\ngroup by d.ProductID,p.ProductName\r\norder by sum(d.UnitPrice*d.quantity) desc'
+			ProcessRecordScript='var Amount = Report.FieldByName("Amount").AsFloat;\r\nvar NewCatalog = FindCatalogByAmount(Amount);\r\nif (Report.ParameterByName("CurCatalogID").AsInteger != NewCatalog)\r\n{\r\n    Report.DetailGrid.StartNewGroup(1);\r\n}\r\n\r\nfunction FindCatalogByAmount(Amount)\r\n{\r\n    var Catalog;\r\n    if (Amount < 5000)\r\n        Catalog = 1;\r\n    else if (Amount < 20000)\r\n        Catalog = 2;\r\n    else\r\n        Catalog = 3;\r\n    return Catalog;\r\n}\r\n'
+			Items Field
+				Item
+					Name='ProductID'
+					Type=Integer
+				End
+				Item
+					Name='ProductName'
+				End
+				Item
+					Name='Amount'
+					Type=Float
+					Format='$#,##0.00'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='ProductID'
+				Width=3.78354
+			End
+			Item
+				Name='ProductName'
+				Width=4.57729
+			End
+			Item
+				Name='Amount'
+				Width=4.39208
+			End
+		End
+		Object ColumnContent
+			Height=0.582083
+			Items ColumnContentCell
+				Item
+					Column='ProductID'
+					DataField='ProductID'
+				End
+				Item
+					Column='ProductName'
+					DataField='ProductName'
+				End
+				Item
+					Column='Amount'
+					TextAlign=MiddleRight
+					DataField='Amount'
+				End
+			End
+		End
+		Object ColumnTitle
+			BackColor=Silver
+			Height=0.79375
+			RepeatStyle=OnPage
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='ProductID'
+					Text='产品编号'
+				End
+				Item
+					GroupTitle=F
+					Column='ProductName'
+					Text='产品名称'
+				End
+				Item
+					GroupTitle=F
+					Column='Amount'
+					Text='销售金额'
+				End
+			End
+		End
+		Items Group
+			Item
+				Name='Group1'
+				GroupBeginScript='var Amount = Report.FieldByName("Amount").AsFloat;\r\nvar CurCatalogID = FindCatalogByAmount(Amount);\r\nvar CurCatalogText;\r\nif (CurCatalogID == 1)\r\n    CurCatalogText = "滞销";\r\nelse if (CurCatalogID == 2)\r\n    CurCatalogText = "一般";\r\nelse\r\n    CurCatalogText = "畅销";\r\nReport.Parameters.Item("CurCatalogID").AsInteger = CurCatalogID;\r\nReport.Parameters.Item("Catalog").AsString = CurCatalogText;\r\n\r\nfunction FindCatalogByAmount(Amount)\r\n{\r\n    var Catalog;\r\n    if (Amount < 5000)\r\n        Catalog = 1;\r\n    else if (Amount < 20000)\r\n        Catalog = 2;\r\n    else\r\n        Catalog = 3;\r\n    return Catalog;\r\n}\r\n'
+				Object GroupHeader
+					BackColor=00E1FFFF
+					Height=0.582083
+					Object Font
+						Name='宋体'
+						Size=105000,0
+						Bold=T
+						Charset=134
+					End
+					Items Control
+						Item
+							Type=StaticBox
+							Name='StaticBox3'
+							BackColor=White
+							Left=0.185208
+							Width=1.61396
+							Height=0.582083
+							Text='分类等级：'
+						End
+						Item
+							Type=StaticBox
+							Name='CatalogBox'
+							Left=1.79917
+							Width=2.19604
+							Height=0.582083
+							Text='StaticBox6'
+							Parameter='Catalog'
+						End
+					End
+				End
+				Object GroupFooter
+					BackColor=00E1FFFF
+					Height=1.19063
+					FormatScript='var GreenShapeBox = Report.ControlByName("GreenShapeBox");\r\nvar YellowShapeBox = Report.ControlByName("YellowShapeBox");\r\nvar RedShapeBox = Report.ControlByName("RedShapeBox");\r\n\r\n//运行时按条件确定部件框的隐藏与显示\r\nGreenShapeBox.Visible = false;\r\nYellowShapeBox.Visible = false;\r\nRedShapeBox.Visible = false;\r\nvar Amount = Report.FieldByName("Amount").AsFloat;\r\nvar CurCatalog = FindCatalogByAmount(Amount);\r\nif (CurCatalog == 1)\r\n{\r\n    RedShapeBox.Visible = true;\r\n    Report.ControlByName("PictureBox1").AsPictureBox.ImageIndex = 3;\r\n}\r\nelse if (CurCatalog == 2)\r\n{\r\n    YellowShapeBox.Visible = true;\r\n    Report.ControlByName("PictureBox1").AsPictureBox.ImageIndex = 2;\r\n}\r\nelse\r\n{\r\n    GreenShapeBox.Visible = true;\r\n    Report.ControlByName("PictureBox1").AsPictureBox.ImageIndex = 1;\r\n}\r\n\r\r\nfunction FindCatalogByAmount(Amount)\r\n{\r\n    var Catalog;\r\n    if (Amount < 5000)\r\n        Catalog = 1;\r\n    else if (Amount < 20000)\r\n        Catalog = 2;\r\n    else\r\n        Catalog = 3;\r\n    return Catalog;\r\n}\r\n'
+					Object Font
+						Name='宋体'
+						Size=105000,0
+						Bold=T
+						Charset=134
+					End
+					Items Control
+						Item
+							Type=StaticBox
+							Name='StaticBox4'
+							BackColor=White
+							Left=1.79917
+							Width=1.61396
+							Height=0.582083
+							Text='产品个数：'
+						End
+						Item
+							Type=SummaryBox
+							Name='Summary1'
+							BackColor=White
+							Left=3.41313
+							Width=1.98438
+							Height=0.582083
+							SummaryFun=Count
+						End
+						Item
+							Type=SummaryBox
+							Name='Summary2'
+							BackColor=White
+							AlignColumn='Amount'
+							Left=8.36083
+							Width=4.41854
+							Height=0.582083
+							TextAlign=MiddleRight
+							DataField='Amount'
+							Format='$#,##0.00'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox5'
+							BackColor=White
+							Left=6.19125
+							Width=2.19604
+							Height=0.582083
+							Text='金额小计：'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox6'
+							Left=6.19125
+							Top=0.582083
+							Width=2.19604
+							Height=0.608542
+							Text='金额平均：'
+						End
+						Item
+							Type=SummaryBox
+							Name='Summary3'
+							AlignColumn='Amount'
+							Left=8.36083
+							Top=0.582083
+							Width=4.41854
+							Height=0.608542
+							TextAlign=MiddleRight
+							DataField='Amount'
+							SummaryFun=Avg
+							Format='$#,##0.00'
+						End
+						Item
+							Type=ShapeBox
+							Name='GreenShapeBox'
+							BackColor=White
+							Left=1.79917
+							Top=0.608542
+							Width=0.79375
+							Height=0.608542
+							Visible=F
+							ShapeType=Circle
+							FillColor=Green
+							FillStyle=Normal
+						End
+						Item
+							Type=ShapeBox
+							Name='YellowShapeBox'
+							BackColor=White
+							Left=1.79917
+							Top=0.608542
+							Width=0.79375
+							Height=0.608542
+							Visible=F
+							ShapeType=Circle
+							FillColor=Yellow
+							FillStyle=Normal
+						End
+						Item
+							Type=ShapeBox
+							Name='RedShapeBox'
+							BackColor=White
+							Left=1.79917
+							Top=0.608542
+							Width=0.79375
+							Height=0.608542
+							ShapeType=Circle
+							FillColor=Red
+							FillStyle=Normal
+						End
+						Item
+							Type=PictureBox
+							Name='PictureBox1'
+							Width=1.40229
+							Height=1.19063
+						End
+					End
+				End
+			End
+		End
+	End
+	Object PageHeader
+		Height=1.00542
+		Items Control
+			Item
+				Type=StaticBox
+				Name='StaticBox2'
+				Left=9.18104
+				Top=0.185208
+				Width=6.74688
+				Height=0.555625
+				Object Font
+					Name='隶书'
+					Size=142500,0
+					Bold=T
+					Charset=134
+				End
+				TextAlign=MiddleRight
+				Text='北风公司销售管理系统报表'
+			End
+			Item
+				Type=Line
+				Name='Line1'
+				Top=0.79375
+				Width=16.1925
+				Object Pen
+					Width=2
+				End
+			End
+		End
+	End
+	Object PageFooter
+		Height=0.582083
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox1'
+				AlignColumn='Amount'
+				Left=8.36083
+				Width=4.41854
+				Height=0.396875
+				TextAlign=MiddleRight
+				Text='共[#SystemVar(PageCount)#]页 第[#SystemVar(PageNumber)#]页'
+			End
+		End
+	End
+	Items Parameter
+		Item
+			Name='Catalog'
+		End
+		Item
+			Name='CurCatalogID'
+			DataType=Integer
+			Value='1'
+		End
+	End
+	Items ReportHeader
+		Item
+			Height=1.79917
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox1'
+					Center=Horizontal
+					Left=4.92125
+					Top=0.185208
+					Width=6.19125
+					Height=0.582083
+					Object Font
+						Name='宋体'
+						Size=150000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='按产品销售汇总分类报表'
+				End
+				Item
+					Type=StaticBox
+					Name='SubTitle'
+					Center=Horizontal
+					Left=1.13771
+					Top=0.79375
+					Width=13.7319
+					Height=0.608542
+					Object Font
+						Name='宋体'
+						Size=120000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='在记录集的 ProcessRecordScript 事件中根据条件产生分组'
+				End
+			End
+		End
+	End
+	Items ReportFooter
+		Item
+			Height=1.19063
+			Object Font
+				Name='宋体'
+				Size=105000,0
+				Bold=T
+				Charset=134
+			End
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox8'
+					AlignColumnSide=Right
+					AlignColumn='ProductName'
+					Left=6.00604
+					Width=2.38125
+					Height=0.582083
+					TextAlign=MiddleRight
+					Text='总金额：'
+				End
+				Item
+					Type=SummaryBox
+					Name='Summary5'
+					AlignColumn='Amount'
+					Left=8.36083
+					Width=4.41854
+					Height=0.582083
+					TextAlign=MiddleRight
+					DataField='Amount'
+					Format='$#,##0.00'
+				End
+				Item
+					Type=SummaryBox
+					Name='Summary6'
+					AlignColumn='Amount'
+					Left=8.36083
+					Top=0.582083
+					Width=4.41854
+					Height=0.608542
+					TextAlign=MiddleRight
+					DataField='Amount'
+					SummaryFun=Avg
+					Format='$#,##0.00'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox9'
+					AlignColumnSide=Right
+					AlignColumn='ProductName'
+					Left=6.00604
+					Top=0.582083
+					Width=2.38125
+					Height=0.608542
+					TextAlign=MiddleRight
+					Text='平均金额：'
+				End
+				Item
+					Type=MemoBox
+					Name='MemoBox2'
+					AlignColumn='ProductID'
+					Width=3.81
+					Height=0.608542
+					Text='总产品个数：[#Count()#]'
+				End
+			End
+		End
+	End
+End

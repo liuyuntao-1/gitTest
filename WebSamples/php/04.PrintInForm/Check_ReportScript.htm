@@ -1,0 +1,38 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 打印支票，向报表传递参数数据，支票的特殊格式数据在报表脚本中产生</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+//在网页初始加载时向报表提供数据
+function window_onload() {
+    ReportViewer.Stop();
+    
+    var Report = ReportViewer.Report;
+    Report.ParameterByName("BankName").AsString = "中国工商";
+    Report.ParameterByName("PayTo").AsString = "锐浪软件技术有限公司";
+    Report.ParameterByName("Year").AsInteger = 2008;
+    Report.ParameterByName("Month").AsInteger = 11;
+    Report.ParameterByName("Day").AsInteger = 28;
+    Report.ParameterByName("Amount").AsFloat = 20080808;
+    Report.ParameterByName("Usage").AsString = "庆祝北京奥运开幕";
+    Report.ParameterByName("Remark").AsString = "Grid++Report:：桌面报表,网络报表完整解决方案";
+
+    ReportViewer.Start();
+}
+
+    </script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="window_onload()">
+        <script type="text/javascript"> 
+            CreatePrintViewerEx("100%", "100%", "Check_ReportScript.grf", "", false, "<param name=BorderStyle value=1>");
+        </script>
+</body>
+</html>

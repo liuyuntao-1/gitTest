@@ -1,0 +1,308 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='3h.交叉表横向平均'
+	Author='锐浪报表软件'
+	Description='定义一个合计列，将此列的内容格改为自由格，在内容格中插入一个统计框，指定统计框的统计函数设为“平均”，这样就指示此列为横向求平均列。这样定义之后，在运行时就会求出横向平均值。下面的过程说明在例子模板“3c.交叉表纵向合计.grf”的基础上增加横向求平均的功能。\r\n\r\n1、插入横向求平均列：执行菜单“查入”-〉“列”，设定此新列的“名称”属性为“HAverage”。 \r\n2、选中此列的内容格，设置其“自由格”属性为“是”。 \r\n3、在内容格插入一个统计框，设置其“停靠”属性为“充满”，其“统计函数”属性为“平均”，其“数据字段”属性为“Amount”。 \r\n4、重新设定横向合计列：选中交叉表，设置其“合计列数”属性为“2”。 \r\n\r\n再进行一些其它设定与调整，会得到一个类似例子模板“3o.交叉表横向平均.grf”的报表。进入查询视图或预览视图就可以看到运行效果。 \r\n\r\n特别说明：统计框的统计函数可以设定为其它的，这样就可以实现其它方式的横向统计，如：个数、最大值、最小值，非空值平均等。 \r\n\r\n'
+	Object Font
+		Name='宋体'
+		Size=90000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+		Size=256
+		Oriention=Landscape
+		TopMargin=1.5
+		BottomMargin=1.5
+	End
+	Object DetailGrid
+		CenterView=T
+		IsCrossTab=T
+		FixCols=2
+		PrintAdaptMethod=ToNewPage
+		Object ColLine
+			Color=00646F71
+		End
+		Object RowLine
+			Color=00646F71
+		End
+		Object Recordset
+			ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=..\\Data\\Northwind.mdb'
+			QuerySQL='select m.CustomerId,c.CompanyName,d.ProductID,p.ProductName,\r\nd.Quantity, d.UnitPrice*d.Quantity as Amount\r\nfrom (Orders m inner join \r\n(OrderDetails as d inner join Products p \r\non P.ProductID=D.ProductID) on m.OrderId=d.OrderId)\r\nleft join Customers c on c.CustomerID=m.CustomerID\r\nwhere d.ProductID<8 and m.CustomerId<'F'\r\norder by m.CustomerId, d.ProductID'
+			Items Field
+				Item
+					Name='CustomerId'
+				End
+				Item
+					Name='CompanyName'
+				End
+				Item
+					Name='ProductID'
+					Type=Integer
+				End
+				Item
+					Name='ProductName'
+				End
+				Item
+					Name='Quantity'
+					Type=Integer
+					Format='0.#########;;#'
+				End
+				Item
+					Name='Amount'
+					Type=Currency
+					Format='#,##0.00;;#'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='Amount'
+				Width=1.74625
+			End
+			Item
+				Name='CustomerID'
+				Width=1.56104
+			End
+			Item
+				Name='CustomerName'
+				Width=2.67229
+			End
+			Item
+				Name='HTotal'
+				Width=2.19604
+			End
+			Item
+				Name='Column1'
+				Width=1.98438
+			End
+		End
+		Object ColumnContent
+			Height=0.608542
+			Items ColumnContentCell
+				Item
+					Column='Amount'
+					TextAlign=MiddleRight
+					DataField='Amount'
+				End
+				Item
+					Column='CustomerID'
+					DataField='CustomerId'
+				End
+				Item
+					Column='CustomerName'
+					DataField='CompanyName'
+				End
+				Item
+					Column='HTotal'
+					BackColor=00E1FFFF
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleRight
+					DataField='Amount'
+				End
+				Item
+					Column='Column1'
+					BackColor=00E1FFFF
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+					FreeCell=T
+					Items Control
+						Item
+							Type=SummaryBox
+							Name='SummaryBox1'
+							Dock=Fill
+							Width=2.4
+							Height=0.5
+							TextAlign=MiddleRight
+							DataField='Amount'
+							SummaryFun=Avg
+						End
+					End
+				End
+			End
+		End
+		Object ColumnTitle
+			Height=0.79375
+			Object Font
+				Name='宋体'
+				Size=90000,0
+				Bold=T
+				Charset=134
+			End
+			RepeatStyle=OnPage
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='CustomerID'
+					TextAlign=MiddleCenter
+					Text='客户编号'
+				End
+				Item
+					GroupTitle=F
+					Column='CustomerName'
+					TextAlign=MiddleCenter
+					Text='客户名称'
+				End
+				Item
+					GroupTitle=F
+					Column='Amount'
+					FreeCell=T
+					Items Control
+						Item
+							Type=FieldBox
+							Name='FieldBox1'
+							Dock=Fill
+							Width=2.4
+							Height=0.5
+							TextAlign=MiddleCenter
+							DataField='ProductName'
+						End
+					End
+				End
+				Item
+					GroupTitle=F
+					Column='Column1'
+					BackColor=00E1FFFF
+					TextAlign=MiddleCenter
+					Text='平均'
+				End
+				Item
+					GroupTitle=F
+					Column='HTotal'
+					BackColor=00E1FFFF
+					TextAlign=MiddleCenter
+					Text='合计'
+				End
+			End
+		End
+		Items Group
+			Item
+				Name='Group1'
+				Object GroupHeader
+					Height=0
+				End
+				Object GroupFooter
+					BackColor=00ECEBD5
+					Height=0.635
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+					Items Control
+						Item
+							Type=StaticBox
+							Name='StaticBox1'
+							BackColor=White
+							AlignColumn='CustomerID'
+							AlignColumnEx='CustomerName'
+							Width=4.23333
+							Height=0.608542
+							Object Border
+								Styles=[DrawRight]
+							End
+							TextAlign=MiddleCenter
+							Text='纵向合计'
+						End
+					End
+				End
+			End
+		End
+		Object CrossTab
+			PercentFormat='0.##%'
+			HCrossFields='ProductID'
+			VCrossFields='CustomerId'
+			ListCols=2
+			TotalCols=2
+		End
+	End
+	Object PageHeader
+		Height=1.32292
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox2'
+				Anchor=[Top|Right]
+				Left=10.9008
+				Top=0.396875
+				Width=13.7054
+				Height=0.47625
+				Object Font
+					Name='楷体_GB2312'
+					Size=120000,0
+					Bold=T
+					Charset=134
+				End
+				Text='欢迎访问Grid++Report网站www.rubylong.cn，了解最新产品信息。'
+			End
+			Item
+				Type=Line
+				Name='Line1'
+				Anchor=[Left|Top|Right]
+				Top=1.00542
+				Width=24.7121
+				Object Pen
+					Width=2
+				End
+			End
+		End
+	End
+	Object PageFooter
+		Height=1.32292
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox4'
+				Anchor=[Top|Right]
+				Left=21.9075
+				Top=0.396875
+				Width=2.59292
+				Height=0.608542
+				Text='第[#SystemVar(PageNumber)#]页 共[#SystemVar(PageCount)#]页'
+			End
+			Item
+				Type=MemoBox
+				Name='MemoBox3'
+				Left=0.211667
+				Top=0.396875
+				Width=6.19125
+				Height=0.608542
+				Text='打印时间：[#SystemVar(CurrentDateTime):yyyy年MM月dd日 HH:mm:ss#]'
+			End
+		End
+	End
+	Items ReportHeader
+		Item
+			Height=1.40229
+			Items Control
+				Item
+					Type=StaticBox
+					Name='TitleBox'
+					Center=Horizontal
+					Left=8.99583
+					Top=0.396875
+					Width=6.74688
+					Height=0.582083
+					Object Font
+						Name='宋体'
+						Size=150000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='按客户与产品交叉分析报表'
+				End
+			End
+		End
+	End
+End

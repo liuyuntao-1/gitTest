@@ -1,0 +1,201 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='8a.图表'
+	Author='锐浪报表软件'
+	Description='演示各种类型的图表'
+	Object Font
+		Name='宋体'
+		Size=105000,0
+		Weight=400
+		Charset=134
+	End
+	ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=..\\Data\\Northwind.mdb'
+	Object Printer
+		Oriention=Landscape
+		LeftMargin=1.5
+		TopMargin=1
+		RightMargin=1.5
+		BottomMargin=1
+	End
+	Items ReportHeader
+		Item
+			Name='ReportHeader5'
+			Height=5.21229
+			Items Control
+				Item
+					Type=Chart
+					Name='Chart14'
+					Left=0.211667
+					Top=0.238125
+					Width=13.5996
+					Height=4.7625
+					Chart3D=T
+					Title='柱图例子(三维)'
+					Object TitleFont
+						Name='宋体'
+						Size=120000,0
+						Bold=T
+						Charset=134
+					End
+					GroupCount=4
+					SeriesCount=3
+					GroupLabel='一\r二\r三\r四'
+					SeriesLabel='张三\r李四\r王五'
+					Value='1000,1200,1500,800,1500,1800,2000,1200,800,1000,700,500'
+					Object Recordset
+					End
+					Object XAxis
+						Label='季度'
+						TextFormat='0.##'
+						Object CoordLinePen
+							Color=Aqua
+						End
+					End
+					Object YAxis
+						Label='销售额'
+						TextFormat='0.##'
+						Max=2000
+						Space=500
+						Object CoordLinePen
+							Color=Aqua
+						End
+					End
+					Object Y2Axis
+						TextFormat='0.##'
+					End
+					Items ChartSeries
+						Item
+							ValueFormat='0.##'
+						End
+					End
+				End
+				Item
+					Type=Chart
+					Name='Chart16'
+					Left=14.2081
+					Top=0.238125
+					Width=11.9856
+					Height=4.7625
+					Chart3D=T
+					Title='叠加柱图例子(三维)'
+					Object TitleFont
+						Name='宋体'
+						Size=120000,0
+						Bold=T
+						Charset=134
+					End
+					GroupCount=4
+					SeriesCount=3
+					GroupLabel='一\r二\r三\r四'
+					SeriesLabel='张三\r李四\r王五'
+					Value='1000,1200,1500,800,1500,1800,2000,1200,800,1000,700,500'
+					Object Recordset
+					End
+					Object XAxis
+						Label='季度'
+						TextFormat='0.##'
+						CoordLineVisible=T
+					End
+					Object YAxis
+						Label='销售额'
+						TextFormat='0.##'
+						CoordLineVisible=T
+					End
+					Object Y2Axis
+						TextFormat='0.##'
+					End
+					Items ChartSeries
+						Item
+							ChartType=StepBarChart
+							ValueFormat='0.##'
+						End
+					End
+				End
+			End
+		End
+		Item
+			Name='ReportHeader6'
+			Height=7.80521
+			Items Control
+				Item
+					Type=Chart
+					Name='Chart17'
+					Left=0.211667
+					Top=0.211667
+					Width=13.5996
+					Height=7.38188
+					Chart3D=T
+					Title='饼图例子(三维)'
+					Object TitleFont
+						Name='宋体'
+						Size=120000,0
+						Bold=T
+						Charset=134
+					End
+					GroupCount=4
+					SeriesCount=3
+					GroupLabel='第一季度\r第二季度\r第三季度\r第四季度'
+					SeriesLabel='张三\r李四\r王五'
+					Value='1000,1200,1500,800,1500,1800,2000,1200,800,1000,700,500'
+					Object Recordset
+					End
+					Object XAxis
+						TextFormat='0.##'
+					End
+					Object YAxis
+						TextFormat='0.##'
+					End
+					Object Y2Axis
+						TextFormat='0.##'
+					End
+					Items ChartSeries
+						Item
+							ChartType=PieChart
+							ValueFormat='0.##'
+							LabelText='[#ChartVar(YVal)#]'
+						End
+					End
+				End
+				Item
+					Type=Chart
+					Name='Chart19'
+					Left=14.2081
+					Top=0.211667
+					Width=11.9856
+					Height=7.38188
+					Chart3D=T
+					Title='饼图例子(三维)'
+					Object TitleFont
+						Name='宋体'
+						Size=120000,0
+						Bold=T
+						Charset=134
+					End
+					LegendValueVisible=T
+					GroupCount=1
+					SeriesCount=4
+					SeriesLabel='第一季度\r第二季度\r第三季度\r第四季度'
+					Value='1000,1200,1500,1800'
+					Object Recordset
+					End
+					Object XAxis
+						TextFormat='0.##'
+					End
+					Object YAxis
+						TextFormat='0.##'
+					End
+					Object Y2Axis
+						TextFormat='0.##'
+					End
+					Items ChartSeries
+						Item
+							ChartType=PieChart
+							ValueFormat='0.##'
+							LabelText='[#ChartVar(YVal100ByGroup)#]'
+						End
+					End
+				End
+			End
+		End
+	End
+End

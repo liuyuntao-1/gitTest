@@ -1,0 +1,410 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='1b.双层表头'
+	Author='锐浪报表软件'
+	Description='演示双层表头报表: Grid++Report 的明细网格标题行可以定义任意多层的级联关系。在设计器‘列标题布局...’界面中可以在设计时定义多层标头。通过IGRDetailGrid 与 IGRColumnTitleCell 的一些方法可以用编程的方式定义多层表头。'
+	Object Font
+		Name='宋体'
+		Size=90000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+	End
+	Object DetailGrid
+		CenterView=T
+		PrintAdaptMethod=ToNewPage
+		Object Recordset
+			ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=..\\Data\\Northwind.mdb'
+			QuerySQL='select * from Customers\r\norder by Region,City'
+			Items Field
+				Item
+					Name='CustomerID'
+				End
+				Item
+					Name='CompanyName'
+				End
+				Item
+					Name='ContactName'
+				End
+				Item
+					Name='ContactTitle'
+				End
+				Item
+					Name='Address'
+				End
+				Item
+					Name='City'
+				End
+				Item
+					Name='Region'
+				End
+				Item
+					Name='PostalCode'
+				End
+				Item
+					Name='Country'
+				End
+				Item
+					Name='Phone'
+				End
+				Item
+					Name='Fax'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='CustomerID'
+				Width=2.38125
+			End
+			Item
+				Name='CompanyName'
+				Width=3.175
+			End
+			Item
+				Name='ContactName'
+				Width=1.5875
+			End
+			Item
+				Name='ContactTitle'
+				Width=1.5875
+			End
+			Item
+				Name='Address'
+				Width=3.175
+			End
+			Item
+				Name='City'
+				Width=1.5875
+			End
+			Item
+				Name='Region'
+				Width=1.98438
+			End
+			Item
+				Name='PostalCode'
+				Width=1.5875
+			End
+			Item
+				Name='Country'
+				Width=1.5875
+			End
+			Item
+				Name='Phone'
+				Width=2.98979
+			End
+			Item
+				Name='Fax'
+				Width=3.175
+			End
+		End
+		Object ColumnContent
+			Height=0.79375
+			Items ColumnContentCell
+				Item
+					Column='CustomerID'
+					DataField='CustomerID'
+				End
+				Item
+					Column='CompanyName'
+					DataField='CompanyName'
+				End
+				Item
+					Column='ContactName'
+					DataField='ContactName'
+				End
+				Item
+					Column='ContactTitle'
+					DataField='ContactTitle'
+				End
+				Item
+					Column='Address'
+					DataField='Address'
+				End
+				Item
+					Column='City'
+					DataField='City'
+				End
+				Item
+					Column='Region'
+					DataField='Region'
+				End
+				Item
+					Column='PostalCode'
+					DataField='PostalCode'
+				End
+				Item
+					Column='Country'
+					DataField='Country'
+				End
+				Item
+					Column='Phone'
+					DataField='Phone'
+				End
+				Item
+					Column='Fax'
+					DataField='Fax'
+				End
+			End
+		End
+		Object ColumnTitle
+			BackColor=Silver
+			Height=1.37583
+			RepeatStyle=OnPage
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='CustomerID'
+					BackColor=White
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='客户编号'
+				End
+				Item
+					GroupTitle=F
+					Column='CompanyName'
+					BackColor=White
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='公司名称'
+				End
+				Item
+					GroupTitle=T
+					Name='Column1'
+					Items ColumnTitleCell
+						Item
+							GroupTitle=F
+							Column='ContactName'
+							BackColor=White
+							Object Font
+								Name='宋体'
+								Size=90000,0
+								Bold=T
+								Charset=134
+							End
+							TextAlign=MiddleCenter
+							Text='姓名'
+						End
+						Item
+							GroupTitle=F
+							Column='ContactTitle'
+							BackColor=White
+							Object Font
+								Name='宋体'
+								Size=90000,0
+								Bold=T
+								Charset=134
+							End
+							TextAlign=MiddleCenter
+							Text='称谓'
+						End
+					End
+					BackColor=White
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='联系方法'
+				End
+				Item
+					GroupTitle=F
+					Column='Phone'
+					BackColor=White
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='电话'
+				End
+				Item
+					GroupTitle=F
+					Column='Fax'
+					BackColor=White
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='传真'
+				End
+				Item
+					GroupTitle=T
+					Name='Column2'
+					Items ColumnTitleCell
+						Item
+							GroupTitle=F
+							Column='Country'
+							BackColor=White
+							Object Font
+								Name='宋体'
+								Size=90000,0
+								Bold=T
+								Charset=134
+							End
+							TextAlign=MiddleCenter
+							Text='国家'
+						End
+						Item
+							GroupTitle=F
+							Column='City'
+							BackColor=White
+							Object Font
+								Name='宋体'
+								Size=90000,0
+								Bold=T
+								Charset=134
+							End
+							TextAlign=MiddleCenter
+							Text='城市'
+						End
+						Item
+							GroupTitle=F
+							Column='Region'
+							BackColor=White
+							Object Font
+								Name='宋体'
+								Size=90000,0
+								Bold=T
+								Charset=134
+							End
+							TextAlign=MiddleCenter
+							Text='地区'
+						End
+						Item
+							GroupTitle=F
+							Column='PostalCode'
+							BackColor=White
+							Object Font
+								Name='宋体'
+								Size=90000,0
+								Bold=T
+								Charset=134
+							End
+							TextAlign=MiddleCenter
+							Text='邮编'
+						End
+						Item
+							GroupTitle=F
+							Column='Address'
+							BackColor=White
+							Object Font
+								Name='宋体'
+								Size=90000,0
+								Bold=T
+								Charset=134
+							End
+							TextAlign=MiddleCenter
+							Text='地址'
+						End
+					End
+					BackColor=White
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='位置信息'
+				End
+			End
+		End
+	End
+	Object PageHeader
+		Height=1.32292
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox1'
+				Anchor=[Top|Right]
+				Left=2.19604
+				Top=0.396875
+				Width=13.7054
+				Height=0.47625
+				Object Font
+					Name='楷体_GB2312'
+					Size=120000,0
+					Bold=T
+					Charset=134
+				End
+				Text='欢迎访问Grid++Report网站www.rubylong.cn，了解最新产品信息。'
+			End
+			Item
+				Type=Line
+				Name='Line1'
+				Anchor=[Left|Top|Right]
+				Top=1.00542
+				Width=16.0073
+				Object Pen
+					Width=2
+				End
+			End
+		End
+	End
+	Object PageFooter
+		Height=1.32292
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox2'
+				Anchor=[Top|Right]
+				Left=13.2027
+				Top=0.396875
+				Width=2.59292
+				Height=0.608542
+				Text='第[#SystemVar(PageNumber)#]页 共[#SystemVar(PageCount)#]页'
+			End
+			Item
+				Type=MemoBox
+				Name='MemoBox3'
+				Left=0.211667
+				Top=0.396875
+				Width=6.19125
+				Height=0.608542
+				Text='打印时间：[#SystemVar(CurrentDateTime):yyyy年MM月dd日 HH:mm:ss#]'
+			End
+		End
+	End
+	Items ReportHeader
+		Item
+			Height=1.19063
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox1'
+					Center=Horizontal
+					Left=6.29708
+					Top=0.396875
+					Width=3.41313
+					Height=0.582083
+					Object Font
+						Name='宋体'
+						Size=150000,0
+						Bold=T
+						Charset=134
+					End
+					Text='客户基本信息'
+				End
+			End
+		End
+	End
+End

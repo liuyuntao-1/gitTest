@@ -1,0 +1,603 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='1i.演示部件框自动布局'
+	Author='锐浪报表软件'
+	Description='演示报表部件框的各种自动布局方式，采用自动布局功能，不仅能大大减轻排列部件框的工作量，而且可以得到良好的与自适应的布局效果。Grid++Report的自动布局功能包括：停靠、对齐列、锚定与居中这四种方式。\r\n\r\n在这个例子报表中，通过改变节的高度与列的宽度，可以体会各种自动布局方式的效果。'
+	Object Font
+		Name='宋体'
+		Size=105000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+		TopMargin=1.5
+		BottomMargin=1.5
+	End
+	Object DetailGrid
+		CenterView=T
+		PrintAdaptMethod=ResizeToFit
+		Object Recordset
+			ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=..\\Data\\Northwind.mdb'
+			QuerySQL='select * from Customers\r\norder by Region,City'
+			Items Field
+				Item
+					Name='客户编号'
+					DBFieldName='CustomerID'
+				End
+				Item
+					Name='公司名称'
+					DBFieldName='CompanyName'
+				End
+				Item
+					Name='联系人'
+					DBFieldName='ContactName'
+				End
+				Item
+					Name='联系人称谓'
+					DBFieldName='ContactTitle'
+				End
+				Item
+					Name='地址'
+					DBFieldName='Address'
+				End
+				Item
+					Name='城市'
+					DBFieldName='City'
+				End
+				Item
+					Name='地区'
+					DBFieldName='Region'
+				End
+				Item
+					Name='邮编'
+					DBFieldName='PostalCode'
+				End
+				Item
+					Name='国家'
+					DBFieldName='Country'
+				End
+				Item
+					Name='电话'
+					DBFieldName='Phone'
+				End
+				Item
+					Name='传真'
+					DBFieldName='Fax'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='CustomerID'
+				Width=2.38125
+			End
+			Item
+				Name='CompanyName'
+				Width=3.175
+			End
+			Item
+				Name='ContactName'
+				Width=2.01083
+			End
+			Item
+				Name='Address'
+				Width=3.175
+			End
+			Item
+				Name='PostalCode'
+				Width=2.2225
+			End
+			Item
+				Name='Phone'
+				Width=3.43958
+			End
+		End
+		Object ColumnContent
+			Height=0.79375
+			Items ColumnContentCell
+				Item
+					Column='CustomerID'
+					DataField='客户编号'
+				End
+				Item
+					Column='CompanyName'
+					DataField='公司名称'
+				End
+				Item
+					Column='ContactName'
+					DataField='联系人'
+				End
+				Item
+					Column='Address'
+					DataField='地址'
+				End
+				Item
+					Column='PostalCode'
+					DataField='邮编'
+				End
+				Item
+					Column='Phone'
+					DataField='电话'
+				End
+			End
+		End
+		Object ColumnTitle
+			BackColor=Silver
+			Height=1.00542
+			Object Font
+				Name='宋体'
+				Size=90000,0
+				Bold=T
+				Charset=134
+			End
+			RepeatStyle=OnPage
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='CustomerID'
+					BackColor=White
+					Text='客户编号'
+				End
+				Item
+					GroupTitle=F
+					Column='CompanyName'
+					BackColor=White
+					FreeCell=T
+					Items Control
+						Item
+							Type=StaticBox
+							Name='StaticBox11'
+							Anchor=[Right|Bottom]
+							Left=1.19063
+							Top=0.211667
+							Width=1.79917
+							Height=0.608542
+							Object Border
+								Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+								Object Pen
+									Color=Red
+								End
+							End
+							Text='锚定右下'
+						End
+					End
+				End
+				Item
+					GroupTitle=F
+					Column='ContactName'
+					BackColor=White
+					Text='联系人'
+				End
+				Item
+					GroupTitle=F
+					Column='Address'
+					BackColor=White
+					FreeCell=T
+					Items Control
+						Item
+							Type=StaticBox
+							Name='StaticBox12'
+							Dock=Fill
+							Width=2.4
+							Height=0.5
+							Object Border
+								Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+								Object Pen
+									Color=Red
+								End
+							End
+							Text='停靠充满自由格'
+						End
+					End
+				End
+				Item
+					GroupTitle=F
+					Column='PostalCode'
+					BackColor=White
+					Text='邮编'
+				End
+				Item
+					GroupTitle=F
+					Column='Phone'
+					BackColor=White
+					Text='电话'
+				End
+			End
+		End
+		Items Group
+			Item
+				Name='Group1'
+				ByFields='城市'
+				Object GroupHeader
+					BackColor=00E1FFFF
+					Height=0.635
+					Items Control
+						Item
+							Type=FieldBox
+							Name='FieldBox1'
+							BackColor=White
+							AlignColumn='CompanyName'
+							Left=2.35479
+							Width=3.20146
+							Height=0.608542
+							Object Border
+								Styles=[DrawLeft|DrawRight]
+							End
+							DataField='城市'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox2'
+							BackColor=White
+							AlignColumn='CustomerID'
+							Left=-0.0264583
+							Width=2.40771
+							Height=0.608542
+							Object Border
+								Styles=[DrawLeft|DrawRight]
+							End
+							DataField='地区'
+						End
+					End
+				End
+				Object GroupFooter
+					BackColor=Aqua
+					Height=0.635
+					Items Control
+						Item
+							Type=StaticBox
+							Name='StaticBox9'
+							BackColor=White
+							AlignColumn='CustomerID'
+							Left=-0.0264583
+							Width=2.40771
+							Height=0.608542
+							Object Border
+								Styles=[DrawLeft|DrawRight]
+							End
+							Text='对齐客户编号'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox10'
+							BackColor=White
+							AlignColumn='CompanyName'
+							Left=2.35479
+							Width=3.20146
+							Height=0.608542
+							Object Border
+								Styles=[DrawLeft|DrawRight]
+							End
+							Text='对齐公司名称 '
+						End
+					End
+				End
+			End
+		End
+	End
+	Object PageHeader
+		Height=1.32292
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox1'
+				Anchor=[Top|Right]
+				AlignColumn='CustomerID'
+				AlignColumnEx='Phone'
+				Top=0.396875
+				Width=16.4306
+				Height=0.47625
+				Object Font
+					Name='楷体_GB2312'
+					Size=120000,0
+					Bold=T
+					Charset=134
+				End
+				Text='欢迎访问Grid++Report网站www.rubylong.cn，了解最新产品信息。'
+			End
+			Item
+				Type=Line
+				Name='Line1'
+				Anchor=[Left|Top|Right]
+				AlignColumn='CustomerID'
+				AlignColumnEx='Phone'
+				Top=1.00542
+				Width=16.4306
+				Object Pen
+					Width=2
+				End
+			End
+		End
+	End
+	Object PageFooter
+		Height=1.00542
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox2'
+				Anchor=[Top|Right]
+				AlignColumn='PostalCode'
+				AlignColumnEx='Phone'
+				Left=10.7421
+				Top=0.211667
+				Width=5.68854
+				Height=0.608542
+				Text='第[#SystemVar(PageNumber)#]页 共[#SystemVar(PageCount)#]页'
+			End
+			Item
+				Type=MemoBox
+				Name='MemoBox3'
+				AlignColumn='CustomerID'
+				AlignColumnEx='ContactName'
+				Top=0.211667
+				Width=7.59354
+				Height=0.608542
+				Text='打印时间：[#SystemVar(CurrentDateTime):yyyy年MM月dd日 HH:mm:ss#]'
+			End
+		End
+	End
+	Items ReportHeader
+		Item
+			Name='ReportHeader1'
+			Height=1.5875
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox16'
+					Dock=Fill
+					Width=2.4
+					Height=0.5
+					WordWrap=T
+					Text='Grid++Report的自动布局功能很方便，是开发自适应动态报表的重要方面。自动布局功能包括：停靠(Dock)、居中(Center)、对齐列(AlignColumn)、锚定(Anchor)。'
+				End
+			End
+		End
+		Item
+			Name='居中'
+			BackColor=00E1FFFF
+			Height=1.00542
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox1'
+					BackColor=White
+					Center=Both
+					Left=3.51896
+					Top=0.211667
+					Width=8.96938
+					Height=0.582083
+					Object Font
+						Name='宋体'
+						Size=150000,0
+						Bold=T
+						Charset=134
+					End
+					Text='居中：自动在水平与垂直方向上居中'
+				End
+			End
+		End
+		Item
+			Name='停靠'
+			Height=2.80458
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox6'
+					BackColor=Fuchsia
+					BackStyle=Normal
+					Dock=Right
+					Left=12.8323
+					Width=3.20146
+					Height=0.5
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+					End
+					Text='停靠右端'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox4'
+					BackColor=00E1FFFF
+					BackStyle=Normal
+					Dock=Left
+					Width=3.20146
+					Height=0.5
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+					End
+					Text='停靠左端'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox5'
+					BackColor=Aqua
+					BackStyle=Normal
+					Dock=Top
+					Left=3.20146
+					Width=2.4
+					Height=0.582083
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+					End
+					Text='停靠上端'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox7'
+					BackColor=Yellow
+					BackStyle=Normal
+					Dock=Bottom
+					Left=3.20146
+					Top=2.2225
+					Width=2.4
+					Height=0.582083
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+					End
+					Text='停靠下端'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox8'
+					BackColor=Lime
+					BackStyle=Normal
+					Dock=Fill
+					Left=3.20146
+					Top=0.582083
+					Width=2.4
+					Height=0.5
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+					End
+					Text='停靠充满'
+				End
+			End
+		End
+		Item
+			Name='锚定'
+			BackColor=Lime
+			Height=1.00542
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox13'
+					BackColor=White
+					Anchor=[Right|Bottom]
+					Left=5.3975
+					Top=0.211667
+					Width=5.00063
+					Height=0.608542
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+						Object Pen
+							Color=Red
+						End
+					End
+					Text='锚定右下:距右边距与下边距不变'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox14'
+					BackColor=White
+					Anchor=[Bottom]
+					Left=0.211667
+					Top=0.211667
+					Width=3.6
+					Height=0.608542
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+						Object Pen
+							Color=Red
+						End
+					End
+					Text='锚定下:距下边距不变'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox15'
+					BackColor=White
+					Anchor=[Right]
+					Left=12.1973
+					Top=0.211667
+					Width=3.59833
+					Height=0.608542
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+						Object Pen
+							Color=Red
+						End
+					End
+					Text='锚定右:距右边距不变'
+				End
+			End
+		End
+	End
+	Items ReportFooter
+		Item
+			Name='对齐列'
+			BackColor=00E1FFFF
+			Height=2.19604
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox2'
+					BackColor=Yellow
+					BackStyle=Normal
+					AlignColumn='CompanyName'
+					Left=2.35479
+					Width=3.20146
+					Height=0.635
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+					End
+					Text='对齐一列'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox3'
+					BackColor=Yellow
+					BackStyle=Normal
+					AlignColumn='Address'
+					AlignColumnEx='Phone'
+					Left=7.54063
+					Width=8.86354
+					Height=0.635
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+					End
+					Text='对齐跨多列'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox17'
+					BackColor=Yellow
+					BackStyle=Normal
+					AlignColumnSide=Left
+					AlignColumn='(GridLeft)'
+					Left=-0.0264583
+					Top=0.608542
+					Width=4.02167
+					Height=0.608542
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+					End
+					Text='对齐到表格左端'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox18'
+					BackColor=Yellow
+					BackStyle=Normal
+					AlignColumnSide=Right
+					AlignColumn='(GridRight)'
+					Left=12.409
+					Top=0.608542
+					Width=3.99521
+					Height=0.608542
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+					End
+					Text='对齐到表格右端'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox19'
+					BackColor=Yellow
+					BackStyle=Normal
+					AlignColumn='(GridLeft)'
+					AlignColumnEx='(GridRight)'
+					Left=-0.0264583
+					Top=1.19063
+					Width=16.4306
+					Height=0.582083
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+					End
+					TextAlign=MiddleCenter
+					Text='对齐到表格左右两端'
+				End
+			End
+			RepeatOnPage=T
+		End
+	End
+End

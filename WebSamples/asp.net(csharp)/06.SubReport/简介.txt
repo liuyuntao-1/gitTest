@@ -1,0 +1,9 @@
+﻿实现为子报表提供数据
+
+1、SubReport.htm：为报表头尾中的子报表提供数据，必须在子报表的 Initialize 事件中加载数据。
+2、SubReportGridInGrid.htm：为明细网格中的子报表提供数据，必须在子报表的 Initialize 事件中加载数据。为表中表类型报表提供数据，可以在事件中取父报表当前记录的字段值，为子报表数据提供关联参数。
+3、Adv\SubReport_Outer.htm：类同 SubReport.htm，区别在子报表模板定义在外部文件，需要单独载入子报表模板。
+4、Adv\SubReportGridInGrid_Outer.htm：类同 SubReportGridInGrid.htm，区别在子报表模板定义在外部文件，需要单独载入子报表模板。
+5、Adv\RelationSubReport.htm：演示子报表在载入数据时应用主报表中的参数
+6、Adv\SoloSubReport.htm：演示一个独立子报表，独立子报表在报表数据方面与一般子报表没有任何区别。独立子报表的概念说明: 请参考帮助中的“开发指南->报表部件框应用->子报表”部分。
+7、Adv\DynamicSoloSubReport.htm：演示应用独立子报表实现将多个报表集中在一起打印或导出等操作，可以根据选择情况动态定义报表，实现动态打印不同的报表。

@@ -1,0 +1,31 @@
+﻿实现报表穿透查询，根据汇总报表选中数据打开对应的明细报表，实现按查询条件动态筛选报表数据。
+
+1、Summary.htm：汇总报表展现网页，响应 ContentCellDblClick 事件打开对应的明细报表，明细报表的数据筛选参数通过 URL 中的参数传递。
+2、Detail.aspx：明细报表展现网页。
+3、Crosstab.htm：交叉报表展现网页，示范如何获取交叉报表的穿透查询参数，交叉表穿透要特殊一些，而应该取RunningDetailGrid.Recordset中的字段值。
+
+有关为报表传递数据筛选条件的更详细说明请参考帮助：报表插件(WEB报表)->报表数据->报表数据查询条件参数。
+
+关于交叉表穿透查询获取横向交叉字段的值的进一步说明：
+横向交叉字段在动态产生的交叉表记录集中，每个横向交叉项会对应产生一个字段，这个字段的名称为 原字段名+"-"+序号，如横向交叉字段为ProductID，产生N个交叉项，则各
+个项的对应名称为ProductID_1, ProductID_2,...ProductID_N。根据选中列序号,求得是第几个横向交叉项，据此就可以知道对应的横向字段名称，然后在交叉表的记录集中取此
+字段的值即可。
+int ColumnCount = pRunningDetailGrid.Columns.Count; //交叉表的列数
+int SelColumnNo = axGRDisplayViewer1.SelColumnNo; //选中的列序号
+int ListCols = Report.DetailGrid.CrossTab.ListCols; //交叉表列表项数，也就是纵向交叉显示的列数
+int TotalCols = Report.DetailGrid.CrossTab.TotalCols; //交叉表的合计列数
+int ProductID = -1; //记录横向交叉字段的值，如果为-1，表示没有取到值，应该是点击了列表项或合计列
+if ((SelColumnNo >= ListCols) && (SelColumnNo<ColumnCount-TotalCols)) //如果不是列表项或合计列，生成字段名称并取值
+{
+  int ColsPerGroup = Report.DetailGrid.Columns.Count - ListCols - TotalCols; //每个横向交叉项的列数
+  int HCrossGroupNo = (axGRDisplayViewer1.SelColumnNo - ListCols) / ColsPerGroup + 1; //求出横向交叉的项序号
+  string HCrossFieldName = "ProductID_" + HCrossGroupNo; //产生字段名称
+  ProductID = pRunningDetailGrid.Recordset.Fields[HCrossFieldName].AsInteger; //获取字段值
+}
+更多说明：
+1、受限说明：如果某项没有产生交叉数据，这个单元格也就无法获得横向交叉字段的值
+2、取对应列的标题文字，可以获取横向交叉显示字段的显示文字
+3、纵向交叉字段的字段名称在交叉表记录集中保持不变，只要从交叉表的记录集中按原名称获取字段值即可，如：string CoustmerID = pRunningDetailGrid.Recordset.Fields
+["CustomerId"].AsString;
+
+

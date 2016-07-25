@@ -1,0 +1,124 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 打印支票，向报表传递参数数据</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+//在网页初始加载时向报表提供数据
+function window_onload() {
+	var Report = ReportViewer.Report;
+	Report.OnTextBoxGetDisplayText = TextBoxGetDisplayText;
+	
+    Report.LoadFromURL("Check.grf");
+    
+    btnPreview_onclick();
+}
+
+function TextBoxGetDisplayText(Sender)
+{
+	var Report = ReportViewer.Report;
+	
+	//实现事件响应脚本代码
+	
+    //支票中的月日数字如果等于10或20 则要显示为"壹拾"或"贰拾"
+    //如果1x或2x，则要显示为"壹拾几"或"贰拾几"，如15为壹拾伍，28为贰拾捌
+    //而Grid++Report通过设置格式串并不能直接得到这样的数据，所以要通过 TextBoxGetDisplayText
+    //事件改变其显示文字
+    if (Sender.Name == "stMonth")
+    {
+		var Month = Report.ParameterByName("Month").AsInteger;
+		if (Month == 10)
+		{
+			Sender.DisplayText = "壹拾";
+		}
+		else if (Month > 10)
+		{
+			var RawDisplayText = Sender.DisplayText;
+			RawDisplayText = RawDisplayText.substr(0, 1) + "拾" + RawDisplayText.substr(1);
+			Sender.DisplayText = RawDisplayText;
+		}
+    }
+    else if (Sender.Name == "stDay")
+    {
+		//支票中的月日数字如果等于10或20 则要显示为"壹拾"或"贰拾"
+		//如果1x或2x，则要显示为"壹拾几"或"贰拾几"，如15为壹拾伍，28为贰拾捌
+		//而Grid++Report通过设置格式串并不能直接得到这样的数据，所以要通过 TextBoxGetDisplayText
+		//事件改变其显示文字
+		var Day = Report.ParameterByName("Day").AsInteger;
+		if (Day == 10)
+		{
+				Sender.DisplayText = "壹拾";
+		}
+		else if (Day == 20)
+		{
+				Sender.DisplayText = "贰拾";
+		}
+		else  if (Day > 10)
+		{
+			var RawDisplayText = Sender.DisplayText;
+			RawDisplayText = RawDisplayText.substr(0, 1) + "拾" + RawDisplayText.substr(1);
+			Sender.DisplayText = RawDisplayText;
+		}    
+    }
+}
+
+function btnPreview_onclick() {
+	var Report = ReportViewer.Report;
+	
+    ReportViewer.Stop();
+    
+    //用代码给参数赋值
+    Report.ParameterByName("PayTo").AsString = document.getElementById("txtPayTo").value;
+    Report.ParameterByName("Date").AsString = document.getElementById("txtDate").value;
+    var txtDate = document.getElementById("txtDate").value;
+	var YearMonthDay = txtDate.split("-");
+    Report.ParameterByName("Year").AsInteger = YearMonthDay[0];
+    Report.ParameterByName("Month").AsInteger = YearMonthDay[1];
+    Report.ParameterByName("Day").AsInteger = YearMonthDay[2];
+    Report.ParameterByName("Amount").AsFloat = document.getElementById("txtAmount").value;
+    
+    //用代码给部件框数据属性赋值
+    Report.ControlByName("StaticBox7").AsStaticBox.Text = document.getElementById("txtUsage").value;
+    Report.ControlByName("MemoBox2").AsMemoBox.Text = document.getElementById("txtRemark").value;
+    
+    ReportViewer.Start();
+}
+		</script>
+		
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body onload="window_onload()">
+	<table border="0" width="100%">
+		<tr>
+			<td width="8%">收款人：</td>
+			<td width="42%"><input type="text" id="txtPayTo" size="23" value="锐浪软件技术有限公司"></td>
+			<td width="9%">开票日期：</td>
+			<td width="41%"><input type="text" id="txtDate" size="23" value="2008-8-8"></td>
+		</tr>
+		<tr>
+			<td width="8%">金额:</td>
+			<td width="42%"><input type="text" id="txtAmount" size="23" value="20080808"></td>
+			<td width="9%">用途:</td>
+			<td width="41%"><input type="text" id="txtUsage" size="55" value="庆祝北京奥运会开幕"></td>
+		</tr>
+		<tr>
+			<td width="8%">备注</td>
+			<td width="92%" colspan="3"><input type="text" id="txtRemark" size="127" value="Grid++Report:：桌面报表,网络报表完整解决方案"></td>
+		</tr>
+		<tr>
+			<td width="20%" style="height: 24px"><input type="button" value="重新加载数据" id="btnPreview" id="btnPreview" onclick="return btnPreview_onclick()"/></td>
+			<td width="80%" colspan="3" style="height: 24px"></td>
+		</tr>
+	</table>
+	<p>
+        <script type="text/javascript"> 
+            CreatePrintViewerEx("100%", "500", "", "", false, "<param name=BorderStyle value=1>");
+        </script>
+	</p>
+</body>
+</html>

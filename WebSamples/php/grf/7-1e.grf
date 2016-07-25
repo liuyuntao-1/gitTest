@@ -1,0 +1,277 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='7-1e.脚本.两行显示一次行线'
+	Author='锐浪报表软件'
+	Description='实现按需显示表格的行线，将单元格改为自由格，然后在内容行的“格式化脚本”上按条件动态控制部件框的边框。'
+	Object Font
+		Name='宋体'
+		Size=90000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+		TopMargin=1.5
+		BottomMargin=1.5
+	End
+	Object DetailGrid
+		CenterView=T
+		ShowColLine=F
+		ShowRowLine=F
+		PrintAdaptMethod=ResizeToFit
+		Object Recordset
+			ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=..\\Data\\Northwind.mdb'
+			QuerySQL='select * from Customers\r\norder by Region,City'
+			Items Field
+				Item
+					Name='客户编号'
+					DBFieldName='CustomerID'
+				End
+				Item
+					Name='公司名称'
+					DBFieldName='CompanyName'
+				End
+				Item
+					Name='联系人'
+					DBFieldName='ContactName'
+				End
+				Item
+					Name='联系人称谓'
+					DBFieldName='ContactTitle'
+				End
+				Item
+					Name='地址'
+					DBFieldName='Address'
+				End
+				Item
+					Name='城市'
+					DBFieldName='City'
+				End
+				Item
+					Name='地区'
+					DBFieldName='Region'
+				End
+				Item
+					Name='邮编'
+					DBFieldName='PostalCode'
+				End
+				Item
+					Name='国家'
+					DBFieldName='Country'
+				End
+				Item
+					Name='电话'
+					DBFieldName='Phone'
+				End
+				Item
+					Name='传真'
+					DBFieldName='Fax'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='CustomerID'
+				Width=2.38125
+			End
+			Item
+				Name='CompanyName'
+				Width=3.175
+			End
+			Item
+				Name='ContactName'
+				Width=2.61938
+			End
+		End
+		Object ColumnContent
+			Height=0.79375
+			FormatScript='var ModVal = SystemVarValue(8) % 2; //grsvRowNo\r\nvar BorderStyles  = (ModVal == 0)? 8:0;  //grbsDrawBottom=8\r\nReport.ControlByName("FieldBox1").Border.Styles = BorderStyles;\r\nReport.ControlByName("FieldBox2").Border.Styles = BorderStyles;\r\nReport.ControlByName("FieldBox3").Border.Styles = BorderStyles;'
+			Items ColumnContentCell
+				Item
+					Column='CustomerID'
+					Object Font
+						Name='宋体'
+						Size=105000,0
+						Weight=400
+						Charset=134
+					End
+					FreeCell=T
+					Items Control
+						Item
+							Type=FieldBox
+							Name='FieldBox1'
+							Dock=Fill
+							Width=2.38125
+							Height=0.79375
+							Object Border
+								Styles=[DrawBottom]
+							End
+							DataField='客户编号'
+						End
+					End
+				End
+				Item
+					Column='CompanyName'
+					Object Font
+						Name='宋体'
+						Size=105000,0
+						Weight=400
+						Charset=134
+					End
+					FreeCell=T
+					Items Control
+						Item
+							Type=FieldBox
+							Name='FieldBox2'
+							Dock=Fill
+							Width=3.175
+							Height=0.79375
+							Object Border
+								Styles=[DrawBottom]
+							End
+							DataField='公司名称'
+						End
+					End
+				End
+				Item
+					Column='ContactName'
+					Object Font
+						Name='宋体'
+						Size=105000,0
+						Weight=400
+						Charset=134
+					End
+					FreeCell=T
+					Items Control
+						Item
+							Type=FieldBox
+							Name='FieldBox3'
+							Dock=Fill
+							Width=2.61938
+							Height=0.79375
+							Object Border
+								Styles=[DrawBottom]
+							End
+							DataField='联系人'
+						End
+					End
+				End
+			End
+		End
+		Object ColumnTitle
+			BackColor=Silver
+			Height=0.79375
+			Object Font
+				Name='宋体'
+				Size=90000,0
+				Bold=T
+				Charset=134
+			End
+			RepeatStyle=OnPage
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='CustomerID'
+					BackColor=White
+					Text='客户编号'
+				End
+				Item
+					GroupTitle=F
+					Column='CompanyName'
+					BackColor=White
+					Text='公司名称'
+				End
+				Item
+					GroupTitle=F
+					Column='ContactName'
+					BackColor=White
+					Text='联系人'
+				End
+			End
+		End
+	End
+	Object PageHeader
+		Height=1.32292
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox1'
+				Anchor=[Top|Right]
+				Left=2.19604
+				Top=0.396875
+				Width=13.7054
+				Height=0.47625
+				Object Font
+					Name='楷体_GB2312'
+					Size=120000,0
+					Bold=T
+					Charset=134
+				End
+				Text='欢迎访问Grid++Report网站www.rubylong.cn，了解最新产品信息。'
+			End
+			Item
+				Type=Line
+				Name='Line1'
+				Anchor=[Left|Top|Right]
+				Top=1.00542
+				Width=16.0073
+				Object Pen
+					Width=2
+				End
+			End
+		End
+	End
+	Object PageFooter
+		Height=1.32292
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox2'
+				Anchor=[Top|Right]
+				Left=13.2027
+				Top=0.396875
+				Width=2.59292
+				Height=0.608542
+				Text='第[#SystemVar(PageNumber)#]页 共[#SystemVar(PageCount)#]页'
+			End
+			Item
+				Type=MemoBox
+				Name='MemoBox3'
+				Left=0.211667
+				Top=0.396875
+				Width=6.19125
+				Height=0.608542
+				Text='打印时间：[#SystemVar(CurrentDateTime):yyyy年MM月dd日 HH:mm:ss#]'
+			End
+		End
+	End
+	Items Parameter
+		Item
+			Name='AppendCount'
+			DataType=Integer
+			Value='5'
+		End
+	End
+	Items ReportHeader
+		Item
+			Height=0.978958
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox1'
+					Center=Horizontal
+					Left=6.29708
+					Top=0.185208
+					Width=3.41313
+					Height=0.582083
+					Object Font
+						Name='宋体'
+						Size=150000,0
+						Bold=T
+						Charset=134
+					End
+					Text='客户基本信息'
+				End
+			End
+		End
+	End
+End

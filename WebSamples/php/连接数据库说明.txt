@@ -1,0 +1,10 @@
+这里提供的Grid++Report报表插件例子可以连接MYSQL、MSSQL与ODBC这几种数据访问方式。
+MSSQL与ODBC访问的是MS SQL Server数据库，前提是将“..\Data\gridreport.mdf”附加
+到SQL Server数据库。访问MYSQL例子数据，前提是将“mysql_data\gridreport”复制到
+Mysql的数据目录下，目标目录为“gridreport”。
+
+在为报表提供XML数据的php例子程序(如：data\xmlCustomer.php)中，将最上面的include改为
+对应的包含文件，即可实现访问对应的数据。
+1、将include包含文件改为mysql_GenXmlData，就是采用MYSQL数据
+2、将include包含文件改为mssql_GenXmlData，就是采用MSSQL数据
+3、将include包含文件改为odbc_GenXmlData，就是采用ODBC数据

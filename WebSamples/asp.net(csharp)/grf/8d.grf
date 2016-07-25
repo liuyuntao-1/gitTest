@@ -1,0 +1,302 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='8a.图表'
+	Author='锐浪报表软件'
+	Description='演示各种类型的图表'
+	Object Font
+		Name='宋体'
+		Size=105000,0
+		Weight=400
+		Charset=134
+	End
+	ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=..\\Data\\Northwind.mdb'
+	Object Printer
+		Height=29.7
+		Oriention=Landscape
+		LeftMargin=1.5
+		TopMargin=0.5
+		RightMargin=1.5
+		BottomMargin=0.5
+	End
+	Items ReportHeader
+		Item
+			Name='ReportHeader1'
+			Height=10.0013
+			Items Control
+				Item
+					Type=Chart
+					Name='Chart1'
+					Left=0.211667
+					Width=12.991
+					Height=9.78958
+					Title='柱图'
+					Object TitleFont
+						Name='宋体'
+						Size=120000,0
+						Bold=T
+						Charset=134
+					End
+					GroupCount=4
+					SeriesCount=3
+					BarWidthPercent=85
+					SeriesField='ProductName'
+					GroupField='Region'
+					GroupLabel='一\r二\r三\r四'
+					SeriesLabel='张三\r李四\r王五'
+					Value='1000,1200,1500,800,1500,1800,2000,1200,800,1000,700,500'
+					Object Recordset
+						QuerySQL='select c.Region,  d.ProductID,p.ProductName,\r\nsum(d.UnitPrice*d.Quantity) as Amount\r\nfrom (Orders m inner join \r\n(OrderDetails as d inner join Products p on P.ProductID=D.ProductID) on \r\r\nm.OrderId=d.OrderId)\r\nleft join Customers c on c.CustomerID=m.CustomerID\r\nwhere d.ProductID in (1,10,11,21) and m.OrderDate between \r\r\n#1997/1/1# and #1997/12/31#\r\ngroup by c.Region,d.ProductID,p.ProductName\r\norder by d.ProductID,c.Region'
+						Items Field
+							Item
+								Name='Region'
+							End
+							Item
+								Name='ProductID'
+								Type=Integer
+							End
+							Item
+								Name='ProductName'
+							End
+							Item
+								Name='Amount'
+								Type=Currency
+							End
+						End
+					End
+					Object XAxis
+						Label='季度'
+						TextFormat='0.##'
+						Object CoordLinePen
+							Color=Aqua
+						End
+					End
+					Object YAxis
+						Label='销售额'
+						TextFormat='0.##'
+						Object CoordLinePen
+							Color=Aqua
+						End
+					End
+					Object Y2Axis
+						TextFormat='0.##'
+					End
+					Items ChartSeries
+						Item
+							YValueField='Amount'
+							ValueFormat='0.00,'
+						End
+					End
+				End
+				Item
+					Type=Chart
+					Name='Chart3'
+					Left=13.3879
+					Width=13.0175
+					Height=9.78958
+					Title='柱图'
+					Object TitleFont
+						Name='宋体'
+						Size=120000,0
+						Bold=T
+						Charset=134
+					End
+					LegendValueVisible=T
+					LegendShowSum=T
+					LegendSumLabel='总计(元)'
+					GroupCount=4
+					SeriesCount=3
+					BarWidthPercent=85
+					SeriesField='ProductName'
+					GroupField='Region'
+					GroupLabel='一\r二\r三\r四'
+					SeriesLabel='张三\r李四\r王五'
+					Value='1000,1200,1500,800,1500,1800,2000,1200,800,1000,700,500'
+					Object Recordset
+						QuerySQL='select c.Region,  d.ProductID,p.ProductName,\r\nsum(d.UnitPrice*d.Quantity) as Amount\r\nfrom (Orders m inner join \r\n(OrderDetails as d inner join Products p on P.ProductID=D.ProductID) on \r\r\nm.OrderId=d.OrderId)\r\nleft join Customers c on c.CustomerID=m.CustomerID\r\nwhere d.ProductID in (1,10,11,21) and m.OrderDate between \r\r\n#1997/1/1# and #1997/12/31#\r\ngroup by c.Region,d.ProductID,p.ProductName\r\norder by d.ProductID,c.Region'
+						Items Field
+							Item
+								Name='Region'
+							End
+							Item
+								Name='ProductID'
+								Type=Integer
+							End
+							Item
+								Name='ProductName'
+							End
+							Item
+								Name='Amount'
+								Type=Currency
+							End
+						End
+					End
+					Object XAxis
+						Label='季度'
+						TextFormat='0.##'
+						Object CoordLinePen
+							Color=Aqua
+						End
+					End
+					Object YAxis
+						Label='销售额'
+						TextFormat='0.##'
+						Object CoordLinePen
+							Color=Aqua
+						End
+					End
+					Object Y2Axis
+						TextFormat='0.##'
+					End
+					Items ChartSeries
+						Item
+							ChartType=LineChart
+							YValueField='Amount'
+							ValueFormat='0.00,'
+							MarkerStyle=Dimond
+						End
+					End
+				End
+			End
+		End
+		Item
+			Name='ReportHeader2'
+			Height=10
+			Items Control
+				Item
+					Type=Chart
+					Name='Chart4'
+					Left=0.211667
+					Width=12.991
+					Height=9.79
+					Title='柱图'
+					Object TitleFont
+						Name='宋体'
+						Size=120000,0
+						Bold=T
+						Charset=134
+					End
+					GroupCount=4
+					SeriesCount=3
+					BarWidthPercent=85
+					SeriesField='Region'
+					GroupField='ProductName'
+					GroupLabel='一\r二\r三\r四'
+					SeriesLabel='张三\r李四\r王五'
+					Value='1000,1200,1500,800,1500,1800,2000,1200,800,1000,700,500'
+					Object Recordset
+						QuerySQL='select c.Region,  d.ProductID,p.ProductName,\r\nsum(d.UnitPrice*d.Quantity) as Amount\r\nfrom (Orders m inner join \r\n(OrderDetails as d inner join Products p on P.ProductID=D.ProductID) on \r\r\nm.OrderId=d.OrderId)\r\nleft join Customers c on c.CustomerID=m.CustomerID\r\nwhere d.ProductID in (1,10,11,21) and m.OrderDate between \r\r\n#1997/1/1# and #1997/12/31#\r\ngroup by c.Region,d.ProductID,p.ProductName\r\norder by d.ProductID,c.Region'
+						Items Field
+							Item
+								Name='Region'
+							End
+							Item
+								Name='ProductID'
+								Type=Integer
+							End
+							Item
+								Name='ProductName'
+							End
+							Item
+								Name='Amount'
+								Type=Currency
+							End
+						End
+					End
+					Object XAxis
+						Label='季度'
+						TextFormat='0.##'
+						Object CoordLinePen
+							Color=Aqua
+						End
+					End
+					Object YAxis
+						Label='销售额'
+						TextFormat='0.##'
+						Object CoordLinePen
+							Color=Aqua
+						End
+					End
+					Object Y2Axis
+						TextFormat='0.##'
+					End
+					Items ChartSeries
+						Item
+							ChartType=PieChart
+							YValueField='Amount'
+							ValueFormat='0.##'
+							LabelText='[#ChartVar(YVal)#]'
+						End
+					End
+				End
+				Item
+					Type=Chart
+					Name='Chart5'
+					Left=13.3879
+					Width=13.0175
+					Height=9.78958
+					Title='柱图'
+					Object TitleFont
+						Name='宋体'
+						Size=120000,0
+						Bold=T
+						Charset=134
+					End
+					LegendValueVisible=T
+					LegendAtBottom=T
+					GroupCount=4
+					BarWidthPercent=85
+					GroupField='Region'
+					SeriesAuto=F
+					GroupLabel='一\r二\r三\r四'
+					SeriesLabel='金额\r数量'
+					Value='1000,1200,1500,800,1500,1800,2000,1200'
+					Object Recordset
+						QuerySQL='select c.Region, sum(d.UnitPrice*d.Quantity) as Amount, sum(d.Quantity) as Quantity\r\nfrom (Orders m inner join OrderDetails d on m.OrderId=d.OrderId)\r\nleft join Customers c on c.CustomerID=m.CustomerID\r\nwhere d.ProductID=11 and m.OrderDate between \r\r\n#1997/1/1# and #1997/12/31#\r\ngroup by c.Region\r\norder by c.Region'
+						Items Field
+							Item
+								Name='Region'
+							End
+							Item
+								Name='Amount'
+								Type=Currency
+							End
+							Item
+								Name='Quantity'
+								Type=Float
+							End
+						End
+					End
+					Object XAxis
+						Label='季度'
+						TextFormat='0.##'
+						Object CoordLinePen
+							Color=Aqua
+						End
+					End
+					Object YAxis
+						Label='销售额'
+						TextFormat='0.##'
+						Object CoordLinePen
+							Color=Aqua
+						End
+					End
+					Object Y2Axis
+						TextFormat='0.##'
+					End
+					Items ChartSeries
+						Item
+							YValueField='Amount'
+							ValueFormat='0.00,'
+						End
+						Item
+							ChartType=LineChart
+							ByY2Axis=T
+							YValueField='Quantity'
+							ValueFormat='0.##,'
+						End
+					End
+				End
+			End
+		End
+	End
+End

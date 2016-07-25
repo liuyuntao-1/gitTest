@@ -1,0 +1,223 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 将从服务器获得的XML数据提供给图表</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+	<script src="../GRUtility.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+var FilterURL;
+
+function window_onload() 
+{
+    btnRefresh_onclick();
+}
+
+function btnRefresh_onclick() 
+{
+    ReportViewer.Stop();
+    
+    var BeginDate = document.getElementById("txtBeginDate").value;
+    var EndDate = document.getElementById("txtEndDate").value;
+    FilterURL = "?BeginDate=" + BeginDate + "&EndDate=" + EndDate;
+    
+    FillDataChart1();
+    FillDataChart2();
+    FillDataChart3();
+    
+    //启动报表运行
+    ReportViewer.Start();
+}
+
+function FillDataChart1() 
+{
+    var Report = ReportViewer.Report;
+    var Chart = Report.ControlByName("Chart1").AsChart;
+    
+    //从网上取数据并转存到xmlDom中
+    var xml = Report.ExtractXMLFromURL("xmlChart.jsp" + FilterURL);
+    Chart.LoadDataFromXML(xml, true, true, true);
+}
+
+function FillDataChart2() 
+{
+    var Report = ReportViewer.Report;
+    var Chart = Report.ControlByName("Chart2").AsChart;
+    
+    //设定图表的一些固定属性
+	Chart.SeriesCount = 3;   //设定序列个数为3个
+	Chart.SetSeriesLabel(0, "销售数量"); //设定第1个序列的标签文字
+	Chart.SetSeriesLabel(1, "折前金额"); //设定第2个序列的标签文字
+	Chart.SetSeriesLabel(2, "折后金额"); //设定第3个序列的标签文字
+	
+	Chart.GroupCount = 12;  //设定组个数为12个
+    for (i=1; i<=Chart.GroupCount; ++i)
+        Chart.SetGroupLabel(i-1, i + "月");
+        
+    //从网上取数据并转存到xmlDom中，然后载入到图表中
+    var xml = Report.ExtractXMLFromURL("xmlChart2.jsp" + FilterURL);
+    Chart.LoadDataFromXML(xml, false, false, false);
+}
+
+function FillDataChart3() 
+{
+    var Report = ReportViewer.Report;
+    var Chart = Report.ControlByName("Chart3").AsChart;
+    
+    //设定图表的一些固定属性
+	Chart.SeriesCount = 4;
+	Chart.GroupCount = 12;
+    for (i=1; i<=Chart.GroupCount ; ++i)
+        Chart.SetGroupLabel(i-1, i + "月");
+        
+    //首先将原来数据全部置为0
+    for (SeriesIndex=0; SeriesIndex<Chart.SeriesCount; ++SeriesIndex)
+        for (GroupIndex=0; GroupIndex<Chart.GroupCount; ++GroupIndex)
+		    Chart.SetValue(SeriesIndex, GroupIndex,  0);
+    
+    //从网上取XML数据并转存到一个动态创建的记录集中
+    var varRecordset = Report.Utility.CreateRecordset();
+    var fldProduct = varRecordset.AddField("ProductName", 1/*字符串类型*/); 
+    var fldMonth = varRecordset.AddField("MonthData", 2/*整数类型*/);
+    var fldAmount = varRecordset.AddField("Amount", 3/*浮点数字类型*/);
+    varRecordset.LoadData("xmlChart3.jsp" + FilterURL);
+    
+    //将记录集中的数据赋值给图表
+	var PrevProduct = "";
+	var SeriesIndex = -1;
+	var MaxVal = 0; //找出值中的最大值，以便设定图表的 YAxisMaximum 属性
+	varRecordset.First();
+	while ( !varRecordset.Eof() )
+	{
+	    var Product = fldProduct.AsString;
+		var GroupIndex = fldMonth.AsInteger;
+		var Val = fldAmount.AsFloat;
+		if (MaxVal < Val)
+		    MaxVal = Val
+		if (PrevProduct != Product)
+		{
+		    ++SeriesIndex;
+		    Chart.SetSeriesLabel(SeriesIndex, Product);
+		    PrevProduct = Product;
+		}
+		Chart.SetValue(SeriesIndex, GroupIndex, Val);
+		
+	    varRecordset.Next();
+	}
+	Chart.YAxisMaximum = MaxVal;
+}
+
+function Radio1_onclick() 
+{
+    var Report = ReportViewer.Report;
+    var Chart1 = Report.ControlByName("Chart1").AsChart;
+    var Chart2 = Report.ControlByName("Chart2").AsChart;
+    
+    if (Radio1.checked)
+    {
+        Chart1.Series.Item(1).ChartType = 1;
+        Chart2.Series.Item(1).ChartType = 1;
+    }
+    else if (Radio2.checked)
+    {
+        Chart1.Series.Item(1).ChartType = 2;
+        Chart2.Series.Item(1).ChartType = 2;
+    }
+    else if (Radio3.checked)
+    {
+        Chart1.Series.Item(1).ChartType = 3;
+        Chart2.Series.Item(1).ChartType = 3;
+    }
+    else if (Radio4.checked)
+    {
+        Chart1.Series.Item(1).ChartType = 4;
+        Chart2.Series.Item(1).ChartType = 4;
+    }
+    else if (Radio5.checked)
+    {
+        Chart1.Series.Item(1).ChartType = 7;
+        Chart2.Series.Item(1).ChartType = 7;
+    }
+        
+    ReportViewer.QuickRefresh();
+}
+
+function OnChartClickSeries(Sender, SeriesIndex, GroupIndex)
+{
+	//响应图表数据区域点击事件，获取对应数据项的信息
+	var Value = Sender.Value(SeriesIndex, GroupIndex);
+	var Msg = "ChartName=" + Sender.Name + " SeriesIndex=" + SeriesIndex + " GroupIndex=" + GroupIndex + " Value=" + Value;
+	alert(Msg); //实际应用中在此进一步完成实际需要任务
+}
+
+function OnChartClickLegend(Sender, SeriesIndex, GroupIndex)
+{
+	//响应图表图例区域点击事件
+	if (Sender.Name == "Chart1")
+	{
+        var Chart = ReportViewer.Report.ControlByName("Chart1").AsChart;
+        var GroupLabel = Chart.SeriesLabel(SeriesIndex);
+        
+        var ProductID = 0;
+        if (GroupLabel == "蕃茄酱")
+            ProductID = 3;
+        else if (GroupLabel == "牛奶")
+            ProductID = 2;
+        else if (GroupLabel == "苹果汁")
+            ProductID = 1;
+        else if (GroupLabel == "盐")
+            ProductID = 4;
+           
+        var BeginDate = document.getElementById("txtBeginDate").value;
+        var EndDate = document.getElementById("txtEndDate").value;
+        
+        //根据参数打开对应明细表
+        var URL = "../10.SummaryToDetail/Detail.jsp?ProductID=" + ProductID + "&BeginDate='" + BeginDate + "'&EndDate='" + EndDate + "'";
+	    window.open(URL, "_blank");
+	}
+	else
+	{
+	    var Msg = "ChartName=" + Sender.Name + " SeriesIndex=" + SeriesIndex;
+	    alert(Msg); //实际应用中在此进一步完成实际需要任务
+	}
+}
+    </script>
+
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="return window_onload()">
+    <table height="100%" width="100%">
+        <tr>
+            <td style="height: 20px; width: 434px;" atomicselection="true">
+                <input id="Radio1" type="radio" type="text/javascript" onclick="return Radio1_onclick()" checked="CHECKED" name="ChartType" value="1" />柱图&nbsp;
+                <input id="Radio2" type="radio" type="text/javascript" onclick="return Radio1_onclick()" name="ChartType" value="2" />饼图&nbsp;
+                <input id="Radio3" type="radio" type="text/javascript" onclick="return Radio1_onclick()" name="ChartType" value="3" />折线图&nbsp;
+                <input id="Radio4" type="radio" type="text/javascript" onclick="return Radio1_onclick()" name="ChartType" value="4" />叠加柱图&nbsp;
+                <input id="Radio5" type="radio" type="text/javascript" onclick="return Radio1_onclick()" name="ChartType" value="7" />曲线图
+            </td>
+            <td atomicselection="true" style="height: 20px">
+                开始日期:
+                <input id="txtBeginDate" maxlength="20" name="txtBeginDate" type="text"
+                    value="1997-1-1" style="width: 66px" />
+                结束日期:<input id="txtEndDate" maxlength="20" name="txtEndDate" type="text"
+                    value="1997-12-31" style="width: 69px" />
+                <input id="btnRefresh" name="btnRefresh" onclick="return btnRefresh_onclick()" style="width: 49px"
+                    type="button" value="更新" /></td>
+        </tr>
+        <tr height="100%">
+            <td colspan="2">
+                <script type="text/javascript"> 
+	                CreateDisplayViewerEx("100%", "100%", "Chart.grf", "", true, "<param name='OnChartClickSeries' value='OnChartClickSeries'>"
+	                    +  "<param name='OnChartClickLegend' value='OnChartClickLegend'>");
+                </script>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+ 

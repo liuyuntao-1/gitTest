@@ -1,0 +1,39 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 用子报表实现表中表，子报表模板外部单独定义</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+function window_onload() 
+{
+    //关联子报表部件框的报表对象
+    var srByOrder = ReportViewer.Report.ControlByName("srByOrder").AsSubReport.Report;
+    var srByCity = ReportViewer.Report.ControlByName("srByCity").AsSubReport.Report;
+    
+	//载入各个子报表关联的报表对象的模板   
+    srByOrder.LoadFromURL("ByOrder.grf");
+    srByCity.LoadFromURL("ByCity.grf");
+    
+	//开启报表生成进度条显示
+	ReportViewer.Report.ShowProgressUI = true;
+	
+	ReportViewer.Report.LoadDataFromURL( encodeURI("../xmlSRGridInGrid.aspx") );
+	
+    //启动运行
+    ReportViewer.Start();
+}
+	</script>
+	
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="window_onload()">
+    <script type="text/javascript"> 
+        CreatePrintViewerEx("100%", "100%", "SubReportGridInGrid_Outer.grf", "", false, "");
+    </script>
+</body>
+</html>

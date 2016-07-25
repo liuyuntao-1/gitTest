@@ -1,0 +1,176 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='你的报表标题'
+	PrintAsDesignPaper=F
+	Object Font
+		Name='宋体'
+		Size=105000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+	End
+	Object DetailGrid
+		PrintAdaptMethod=ResizeToFit
+		Object Recordset
+			ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=C:\\Grid++Report 5.0\\Samples\\Data\\Northwind.mdb'
+			QuerySQL='select * \r\nfrom Customers\r\nwhere City=:ShipCity\r\n'
+			SkipQuery=T
+			Items Field
+				Item
+					Name='CustomerID'
+				End
+				Item
+					Name='CompanyName'
+				End
+				Item
+					Name='ContactName'
+				End
+				Item
+					Name='ContactTitle'
+				End
+				Item
+					Name='Address'
+				End
+				Item
+					Name='City'
+				End
+				Item
+					Name='Region'
+				End
+				Item
+					Name='PostalCode'
+				End
+				Item
+					Name='Country'
+				End
+				Item
+					Name='Phone'
+				End
+				Item
+					Name='Fax'
+				End
+				Item
+					Name='OrderID'
+					Type=Integer
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='City'
+				Width=1.5875
+			End
+			Item
+				Name='CustomerID'
+				Width=2.38125
+			End
+			Item
+				Name='CompanyName'
+				Width=3.175
+			End
+			Item
+				Name='ContactName'
+				Width=1.5875
+			End
+			Item
+				Name='ContactTitle'
+				Width=1.98438
+			End
+			Item
+				Name='Address'
+				Width=3.175
+			End
+		End
+		Object ColumnContent
+			BackColor=00E1FFFF
+			Height=0.635
+			AlternatingBackColor=00E1FFFF
+			Items ColumnContentCell
+				Item
+					Column='City'
+					DataField='City'
+				End
+				Item
+					Column='CustomerID'
+					DataField='CustomerID'
+				End
+				Item
+					Column='CompanyName'
+					DataField='CompanyName'
+				End
+				Item
+					Column='ContactName'
+					DataField='ContactName'
+				End
+				Item
+					Column='ContactTitle'
+					DataField='ContactTitle'
+				End
+				Item
+					Column='Address'
+					DataField='Address'
+				End
+			End
+		End
+		Object ColumnTitle
+			BackColor=00E1FFFF
+			Height=0.635
+			Object Font
+				Name='宋体'
+				Size=105000,0
+				Bold=T
+				Charset=134
+			End
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='City'
+					TextAlign=MiddleCenter
+					Text='城市'
+				End
+				Item
+					GroupTitle=F
+					Column='CustomerID'
+					TextAlign=MiddleCenter
+					Text='客户编号'
+				End
+				Item
+					GroupTitle=F
+					Column='CompanyName'
+					TextAlign=MiddleCenter
+					Text='公司名称'
+				End
+				Item
+					GroupTitle=F
+					Column='ContactName'
+					TextAlign=MiddleCenter
+					Text='联系人'
+				End
+				Item
+					GroupTitle=F
+					Column='ContactTitle'
+					TextAlign=MiddleCenter
+					Text='联系人称谓'
+				End
+				Item
+					GroupTitle=F
+					Column='Address'
+					TextAlign=MiddleCenter
+					Text='地址'
+				End
+			End
+		End
+	End
+	Items Parameter
+		Item
+			Name='ShipCity'
+		End
+	End
+	Items ReportHeader
+		Item
+			Name='ReportHeader1'
+			Height=0
+		End
+	End
+End

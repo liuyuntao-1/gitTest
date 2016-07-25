@@ -1,0 +1,191 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='1q.文字跨行显示'
+	Author='锐浪报表软件'
+	Description='通过设定内容行的‘伸展到下行 ’属性为‘是’，可以让超长的文字另起一新行显示。\r\n'
+	Object Font
+		Name='宋体'
+		Size=90000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+	End
+	Object DetailGrid
+		Object Font
+			Name='宋体'
+			Size=142500,0
+			Weight=400
+			Charset=134
+		End
+		CenterView=T
+		Object Recordset
+			ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=..\\Data\\Northwind.mdb'
+			QuerySQL='select * from categories\r\n'
+			Items Field
+				Item
+					Name='CategoryID'
+					Type=Integer
+				End
+				Item
+					Name='CategoryName'
+				End
+				Item
+					Name='Description'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='CategoryID'
+				Width=2.98979
+			End
+			Item
+				Name='CategoryName'
+				Width=4.18042
+			End
+			Item
+				Name='Description'
+				Width=4.39208
+			End
+		End
+		Object ColumnContent
+			CanGrow=T
+			Height=1.40229
+			GrowToNextRow=T
+			Items ColumnContentCell
+				Item
+					Column='CategoryID'
+					TextAlign=MiddleCenter
+					DataField='CategoryID'
+				End
+				Item
+					Column='CategoryName'
+					DataField='CategoryName'
+				End
+				Item
+					Column='Description'
+					DataField='Description'
+				End
+			End
+		End
+		Object ColumnTitle
+			BackColor=Silver
+			Height=0.79375
+			RepeatStyle=OnPage
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='CategoryID'
+					TextAlign=MiddleCenter
+					Text='分类编号'
+				End
+				Item
+					GroupTitle=F
+					Column='CategoryName'
+					TextAlign=MiddleCenter
+					Text='分类名称'
+				End
+				Item
+					GroupTitle=F
+					Column='Description'
+					Object Font
+						Name='宋体'
+						Size=105000,0
+						Weight=400
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='超出文字显示到下行'
+				End
+			End
+		End
+	End
+	Object PageHeader
+		Height=0.978958
+		Items Control
+			Item
+				Type=StaticBox
+				Name='StaticBox2'
+				Left=9.18104
+				Top=0.185208
+				Width=6.74688
+				Height=0.555625
+				Object Font
+					Name='隶书'
+					Size=142500,0
+					Bold=T
+					Charset=134
+				End
+				TextAlign=MiddleRight
+				Text='北风公司销售管理系统报表'
+			End
+			Item
+				Type=Line
+				Name='Line1'
+				Top=0.79375
+				Width=16.1925
+				Object Pen
+					Width=2
+				End
+			End
+		End
+	End
+	Object PageFooter
+		Height=0.582083
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox1'
+				Left=6.58813
+				Width=4.39208
+				Height=0.396875
+				TextAlign=MiddleRight
+				Text='共[#SystemVar(PageCount)#]页 第[#SystemVar(PageNumber)#]页'
+			End
+		End
+	End
+	Items ReportHeader
+		Item
+			CanGrow=T
+			Height=2.59292
+			Object Font
+				Name='宋体'
+				Size=142500,0
+				Weight=400
+				Charset=134
+			End
+			Items Control
+				Item
+					Type=MemoBox
+					Name='MemoBox2'
+					Center=Horizontal
+					Left=2.2225
+					Top=1.00542
+					Width=11.5888
+					Height=1.40229
+					WordWrap=T
+					TextAlign=TopLeft
+					Text='通过设定内容行的‘伸展到下行 ’属性为‘是’，可以让超长的文字另起一新行显示。\r\n'
+				End
+				Item
+					Type=StaticBox
+					Name='StaticBox4'
+					Center=Horizontal
+					Left=2.61938
+					Top=0.211667
+					Width=10.795
+					Height=0.79375
+					Object Font
+						Name='宋体'
+						Size=142500,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='进入预览视图体验内容行中文字跨行显示'
+				End
+			End
+		End
+	End
+End

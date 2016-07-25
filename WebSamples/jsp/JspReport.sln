@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\...\jspreport\", ".", "{88B439F0-AA3C-401C-9E6D-82E7C7F0FE54}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.VirtualPath = "/jspreport"
+		Debug.AspNetCompiler.PhysicalPath = "..\jspreport\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\jspreport\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/jspreport"
+		Release.AspNetCompiler.PhysicalPath = "..\jspreport\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\jspreport\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "5110"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88B439F0-AA3C-401C-9E6D-82E7C7F0FE54}.Debug|.NET.ActiveCfg = Debug|.NET
+		{88B439F0-AA3C-401C-9E6D-82E7C7F0FE54}.Debug|.NET.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

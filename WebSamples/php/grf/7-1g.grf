@@ -1,0 +1,244 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='7-1g.脚本.镜像页边距并奇偶页眉页脚'
+	Author='锐浪报表软件'
+	Description='当报表双面打印时，让页码信息始终显示在外侧。\r\n\r\n在格式化脚本中根据条件设置部件框的可见性。这里是通过取页号系统变量判断奇偶页。\r\n'
+	MirrorMargins=T
+	Object Font
+		Name='宋体'
+		Size=90000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+		LeftMargin=3.5
+		RightMargin=1.5
+	End
+	Object DetailGrid
+		CenterView=T
+		PrintAdaptMethod=ResizeToFit
+		Object ColLine
+			Width=0.5
+		End
+		Object RowLine
+			Width=0.5
+		End
+		Object Recordset
+			ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=..\\Data\\Northwind.mdb'
+			QuerySQL='select top 300 * from Customers\r\norder by CustomerID'
+			Items Field
+				Item
+					Name='客户编号'
+					DBFieldName='CustomerID'
+				End
+				Item
+					Name='公司名称'
+					DBFieldName='CompanyName'
+				End
+				Item
+					Name='联系人'
+					DBFieldName='ContactName'
+				End
+				Item
+					Name='联系人称谓'
+					DBFieldName='ContactTitle'
+				End
+				Item
+					Name='地址'
+					DBFieldName='Address'
+				End
+				Item
+					Name='城市'
+					DBFieldName='City'
+				End
+				Item
+					Name='地区'
+					DBFieldName='Region'
+				End
+				Item
+					Name='邮编'
+					DBFieldName='PostalCode'
+				End
+				Item
+					Name='国家'
+					DBFieldName='Country'
+				End
+				Item
+					Name='电话'
+					DBFieldName='Phone'
+				End
+				Item
+					Name='传真'
+					DBFieldName='Fax'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='CustomerID'
+				Width=2.38125
+			End
+			Item
+				Name='CompanyName'
+				Width=3.175
+			End
+			Item
+				Name='ContactName'
+				Width=1.5875
+			End
+			Item
+				Name='Fax'
+				Width=3.175
+				Visible=F
+			End
+		End
+		Object ColumnContent
+			Height=1.00542
+			Items ColumnContentCell
+				Item
+					Column='CustomerID'
+					DataField='客户编号'
+				End
+				Item
+					Column='CompanyName'
+					DataField='公司名称'
+				End
+				Item
+					Column='ContactName'
+					DataField='联系人'
+				End
+				Item
+					Column='Fax'
+					DataField='传真'
+				End
+			End
+		End
+		Object ColumnTitle
+			BackColor=Silver
+			Height=1.00542
+			Object Font
+				Name='宋体'
+				Size=90000,0
+				Bold=T
+				Charset=134
+			End
+			RepeatStyle=OnPage
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='CustomerID'
+					BackColor=White
+					Text='客户编号'
+				End
+				Item
+					GroupTitle=F
+					Column='CompanyName'
+					BackColor=White
+					Text='公司名称'
+				End
+				Item
+					GroupTitle=F
+					Column='ContactName'
+					BackColor=White
+					Text='联系人'
+				End
+				Item
+					GroupTitle=F
+					Column='Fax'
+					BackColor=White
+					Text='传真'
+				End
+			End
+		End
+	End
+	Object PageHeader
+		Height=1.19063
+		FormatScript='//控制部件框在偶数页不显示\r\nvar PageNo = Report.SystemVarValue(3); //grsvPageNumber=3\r\nSender.Controls.Item("MemoBox1").Visible = (PageNo%2 != 0);\r\n'
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox1'
+				Anchor=[Top|Right]
+				Left=5.21229
+				Top=0.396875
+				Width=10.795
+				Height=0.47625
+				Object Font
+					Name='楷体_GB2312'
+					Size=105000,0
+					Weight=400
+					Charset=134
+				End
+				TextAlign=MiddleRight
+				Text='欢迎访问Grid++Report网站www.rubylong.cn，了解最新产品信息'
+			End
+		End
+	End
+	Object PageFooter
+		Height=1.19063
+		FormatScript='//在奇偶页分别显示不同位置的部件框，根据页号确定显示或隐藏\r\nvar PageNo = Report.SystemVarValue(3); //grsvPageNumber=3\r\nvar OddVisible = (PageNo%2 != 0);\r\nSender.Controls.Item("mbOddPageNo").Visible = OddVisible;\r\nSender.Controls.Item("mbEvenPageNo").Visible = !OddVisible;\r\nSender.Controls.Item("mbOddTime").Visible = OddVisible;\r\nSender.Controls.Item("mbEvenTime").Visible = !OddVisible;'
+		Items Control
+			Item
+				Type=MemoBox
+				Name='mbEvenTime'
+				Left=9.60438
+				Top=0.211667
+				Width=6.19125
+				Height=0.608542
+				TextAlign=MiddleRight
+				Text='打印时间：[#SystemVar(CurrentDateTime):yyyy年MM月dd日 HH:mm:ss#]'
+			End
+			Item
+				Type=MemoBox
+				Name='mbOddPageNo'
+				Anchor=[Top|Right]
+				Left=13.3879
+				Top=0.211667
+				Width=2.46063
+				Height=0.582083
+				TextAlign=MiddleRight
+				Text='第[#SystemVar(PageNumber)#]页 共[#SystemVar(PageCount)#]页'
+			End
+			Item
+				Type=MemoBox
+				Name='mbOddTime'
+				Top=0.211667
+				Width=6.19125
+				Height=0.608542
+				Text='打印时间：[#SystemVar(CurrentDateTime):yyyy年MM月dd日 HH:mm:ss#]'
+			End
+			Item
+				Type=MemoBox
+				Name='mbEvenPageNo'
+				Anchor=[Top|Right]
+				Top=0.211667
+				Width=2.59292
+				Height=0.608542
+				Text='第[#SystemVar(PageNumber)#]页 共[#SystemVar(PageCount)#]页'
+			End
+		End
+	End
+	Items ReportHeader
+		Item
+			Height=0.978958
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox1'
+					Center=Horizontal
+					Left=3.22792
+					Top=0.185208
+					Width=9.525
+					Height=0.582083
+					Object Font
+						Name='宋体'
+						Size=150000,0
+						Bold=T
+						Charset=134
+					End
+					Text='注意：奇偶页的页眉与页脚显示不一样'
+				End
+			End
+		End
+	End
+End

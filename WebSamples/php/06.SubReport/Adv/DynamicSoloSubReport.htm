@@ -1,0 +1,159 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 动态独立子报表，根据参数动态创建主报表并载入相关子报表</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+CreateReport("rptMain"); //主报表对象
+
+//子报表对象，这里应该将所有可能会显示的子报表都定义上
+var sr_1d;
+var sr_1e;
+var sr_2d;
+var sr_3b;
+
+//在网页初始加载时向报表提供数据
+function window_onload() 
+{
+}
+
+function btnPreview_onclick() 
+{
+    DefineMainReport();
+    rptMain.PrintPreview(true);
+}
+
+function btnPrint_onclick() 
+{
+    DefineMainReport();
+    rptMain.Print(true);
+}
+
+function btnExport_onclick() 
+{
+    DefineMainReport();
+    rptMain.ExportDirect(1, "DynamicSoloSubReport.xls", true,  true);
+}
+
+function btnPrintViewer_onclick() 
+{
+    ReportViewer.Stop(); //停止运行
+    DefineMainReport();
+    ReportViewer.AttachReport(rptMain); //建立报表查看器与报表对象的关联，不能用 ReportViewer.Report = rptMain 这样的形式;
+	ReportViewer.Report.ShowProgressUI = true; //开启报表生成进度条显示，这点不是必须的
+    ReportViewer.Start(); //启动运行
+}
+
+//根据选择情况动态定义主报表
+function DefineMainReport() 
+{
+    ReportViewer.Stop(); //停止报表在查看器中运行，实际应用中不太可能这样综合，如没有这种情况可去掉这行代码
+    
+    rptMain.Clear(); //清空模板定义
+
+    //以下：根据选择在主报表中定义对应的子报表部件框，并将对应的外部报表模板文件载入
+    if ( document.getElementById("checkbox_1d").checked )
+        InsertSubReport("1d");
+    if ( document.getElementById("checkbox_1e").checked )
+        InsertSubReport("1e");
+    if ( document.getElementById("checkbox_2d").checked )
+        InsertSubReport("2d");
+    if ( document.getElementById("checkbox_3b").checked )
+        InsertSubReport("3b");
+        
+    //rptMain.SaveToFile("d:\\DynamicSoloSubReport.grf"); //调试用：保存动态定义的模板到文件，然后用设计器打开检查定义结果是否正确
+    
+    BindSubReport();
+}
+        
+//将各个子报表变量绑定到主报表对应的子报表部件框，并为子报表关联对应的事件函数
+function BindSubReport() 
+{
+    if ( document.getElementById("checkbox_1d").checked )
+    {
+        sr_1d = rptMain.ControlByName("1d").AsSubReport.Report;
+        sr_1d.OnInitialize = On_1d_Initialize;
+    }
+    if ( document.getElementById("checkbox_1e").checked )
+    {
+        sr_1e = rptMain.ControlByName("1e").AsSubReport.Report;
+        sr_1e.OnInitialize = On_1e_Initialize;
+    }
+    if ( document.getElementById("checkbox_2d").checked )
+    {
+        sr_2d = rptMain.ControlByName("2d").AsSubReport.Report;
+        sr_2d.OnInitialize = On_2d_Initialize;
+    }
+    if ( document.getElementById("checkbox_3b").checked )
+    {
+        sr_3b = rptMain.ControlByName("3b").AsSubReport.Report;
+        sr_3b.OnInitialize = On_3b_Initialize;
+    }
+}
+
+//在主报表中定义子报表部件框，并将对应的外部报表模板文件载入
+function InsertSubReport(SubReportName)
+{
+    var Reportheader = rptMain.ReportHeaders.Add();
+    Reportheader.Height = 1.0;
+    Reportheader.CanGrow = true;
+
+    //插入一个子报表
+    var SubReport = Reportheader.Controls.Add(9).AsSubReport; //9=GRControlType.grctSubReport
+    SubReport.Name = SubReportName;
+    SubReport.Dock = 5; //5=GRDockStyle.grdsFill
+    SubReport.ParentPageSettings = false;
+    SubReport.ToNewExcelSheet = true;  //在报表导出Excel时，将此子报表导出到一个新的工作表。
+
+    //从文件中载入报表模板数据到报表主对象
+    var SubReportObject = SubReport.Report;
+    var ReportURL = "../../grf/" + SubReportName + ".grf";
+    SubReportObject.LoadFromURL( ReportURL );
+}
+
+function On_1d_Initialize()
+{
+	sr_1d.LoadDataFromURL("../../data/xmlCustomer.php");  //载入子报表 1d 数据
+}
+
+function On_1e_Initialize()
+{
+	//这里写入载入图表数据的代码，具体可以参考 07.Chart 等相关例子
+}
+
+function On_2d_Initialize()
+{
+	sr_2d.LoadDataFromURL("../../data/xmlCustomer.php");  //载入子报表 2d 数据
+}
+
+function On_3b_Initialize()
+{
+	sr_3b.LoadDataFromURL("../../data/xmlCrossTab.php");  //载入子报表 3b 数据
+}
+	</script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="window_onload()">
+    <p>
+    <input type="checkbox" id="checkbox_1d" value="ON" checked="CHECKED">1d.多栏报表
+    <input type="checkbox" id="checkbox_1e" value="ON" checked="CHECKED">1e.图表
+    <input type="checkbox" id="checkbox_2d" value="ON" checked="CHECKED">2d.分组单元格合并
+    <input type="checkbox" id="checkbox_3b" value="ON" checked="CHECKED">3b.交叉表横向合计
+    </p>
+    <p>
+    <input type="button" value="打印预览" id="btnPreview" onclick="return btnPreview_onclick()">
+    <input type="button" value="直接打印" id="btnPrint" onclick="return btnPrint_onclick()">
+    <input type="button" value="数据导出" id="btnExport" onclick="return btnExport_onclick()">
+    <input type="button" value="报表打印显示器中展现" id="btnPrintViewer" onclick="return btnPrintViewer_onclick()">
+    </p>
+    <script type="text/javascript"> 
+	    CreatePrintViewerEx("100%", "100%", "", "", false, "");
+    </script>
+</body>
+</html>

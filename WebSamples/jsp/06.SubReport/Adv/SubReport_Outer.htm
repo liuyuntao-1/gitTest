@@ -1,0 +1,40 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 子报表，子报表模板外部单独定义</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+function window_onload() 
+{
+    //在变量中记录下子报表部件框的报表对象
+    var CustomerReport = ReportViewer.Report.ControlByName("srCustomerList").AsSubReport.Report;
+    var ProductReport = ReportViewer.Report.ControlByName("srProductList").AsSubReport.Report;
+    var Top10CustomerReport = ReportViewer.Report.ControlByName("srTop10Customer").AsSubReport.Report;
+    var Top10ProductReport = ReportViewer.Report.ControlByName("srTop10Product").AsSubReport.Report;
+    
+	//载入各个子报表关联的报表对象的模板   
+    CustomerReport.LoadFromURL("../../grf/1a.grf");
+    ProductReport.LoadFromURL("Product List.grf");
+    Top10CustomerReport.LoadFromURL("Top10Customer.grf");
+    Top10ProductReport.LoadFromURL("Top10Product.grf");
+    
+	//开启报表生成进度条显示
+	ReportViewer.Report.ShowProgressUI = true;
+	
+    //启动运行
+    ReportViewer.Start();
+}
+	</script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="window_onload()">
+    <script type="text/javascript"> 
+	    CreatePrintViewerEx("100%", "100%", "SubReport_Outer.grf", "../xmlSubReport.jsp", false, "");
+    </script>
+</body>
+</html>

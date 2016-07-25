@@ -1,0 +1,168 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Grid++Report WEB报表例子简要说明</title>
+</head>
+
+<body>
+
+<h2>
+ <Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" width="15" height="14">
+	<param name="Keyword" value="web例子简介">
+</OBJECT>
+</h2>
+<table border="0" width="100%" bgcolor="#99CCFF" cellspacing="0" cellpadding="0" height="33">
+  <tr>
+    <td width="100%" height="33">
+      <h2 style="margin: 0">
+各个WEB报表例子简要说明 - WEB报表</h2>   
+    </td>
+  </tr>
+</table>
+<h3><img border="0" src="arrow_yellow.gif" width="12" height="12">概要说明</h3>
+<ol>
+  <li>
+要运行WEB例子，需要进行一些简单的配置。请打开Grid++Report帮助文档，参考“报表插件(WEB报表)-〉Web报表例子-〉准备运行例子”部分。</li>
+  <li>
+如果在运行过程中出现问题，请参考帮助“报表插件(WEB报表)”部分下的“常见问题解答(FAQ)”与“分析报表不能运行的原因”中的说明。</li>
+  <li>初学者请按目录编号顺序学习，首先理解“01.ViewReport”目录中的“DisplayViewReport.htm”与“PrintViewReport.htm”这两个例子，了解报表运行机制请看帮助中的“报表插件(WEB报表)”部分。</li>  
+  <li>
+Grid++Report快速入门指导:&nbsp;帮助的“产品介绍->快速入门指导”部分&nbsp;。 
+  </li>
+</ol>
+<h3><img border="0" src="arrow_yellow.gif" width="12" height="12">例子根目录下各个文件简介</h3>
+<table height="65" cellSpacing="0" borderColorDark="#ffffff" cellPadding="2" width="100%" border="1">
+  <tbody>
+    <tr>
+      <th width="34%" height="16">文件</th>
+      <th width="104%" height="16">简要说明</th>
+    </tr>
+    <tr>
+      <td width="34%" height="15">CreateControl.js</td>
+      <td width="104%" height="15">报表对象与报表插件创建函数，供报表展现网页调用，后面例子中的报表展现网页都会使用。</td>
+    </tr>
+    <tr>
+      <td width="34%" height="16">GRUtility.js</td>
+      <td width="104%" height="16">例子中用到的通用 javascript 函数。</td>     
+    </tr>
+    <tr>
+      <td width="34%" height="16">Index.htm</td>
+      <td width="104%" height="16">报表例子首页，从此页可以打开运行各个例子。</td>
+    </tr>
+  </tbody>
+</table>
+<h3><img border="0" src="arrow_yellow.gif" width="12" height="12">各目录对应例子简介</h3>
+<table height="132" cellSpacing="0" borderColorDark="#ffffff" cellPadding="2" width="100%" border="1">
+  <tbody>
+    <tr>
+      <th width="37%" height="16">目录</th>
+      <th width="101%" height="16">简要说明</th>
+    </tr>
+    <tr>
+      <td width="30%" height="16">01.ViewReport</td>
+      <td width="108%" height="16">最简单的例子，将报表显示插件嵌入到网页中，以查询显示方式与打印预览方式展现报表，入门应该首先学习这个例子。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">02.PrintDirect</td>
+      <td width="108%" height="16">报表在网页中不展现，调用报表对象的相关函数，实现报表的打印与数据导出等。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">03.Export</td>
+      <td width="108%" height="16">通过响应报表导出相关的事件函数，修改导出的选项参数，改变报表的默认导出行为。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">04.PrintInForm</td>
+      <td width="108%" height="16">实现支票与发票的套打。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">05.Picture</td>
+      <td width="108%" height="16">提供多种方式为报表中显示图像提供数据。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">06.SubReport</td>
+      <td width="108%" height="16">实现为子报表提供数据。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">07.Chart</td>
+      <td width="108%" height="16">实现为图表提供数据。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">08.CustomToolbar</td>
+      <td width="108%" height="16">自定义报表插件的工具栏按钮，可以删除不需要的按钮，增加自定义按钮。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">09.DesignReport</td>
+      <td width="108%" height="16">应用报表设计器控件可视化设计报表。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">10.SummaryToDetail</td>
+      <td width="108%" height="16">实现报表穿透查询，根据汇总报表选中数据打开对应的明细报表，实现按查询条件动态筛选报表数据。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">11.BatchData</td>
+      <td width="108%" height="16">实现从服务器分批按需获取报表数据，如果报表数据量巨大，可以考虑采用分批按需取数，提高报表加载速度，减轻服务器与网络的负载。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">12.NoneDetaiGridData</td>
+      <td width="108%" height="16">为没有明细网格的报表提供XML数据。关于WEB报表的XML数据形式：请参考帮助中“报表插件(WEB报表)->报表数据”中的说明。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">Advance</td>
+      <td width="108%" height="16">进阶例子，实现用代码控制报表的生成与显示，请查看各个例子下的简介文件。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">App_Code</td>
+      <td width="108%" height="16">仅 aps.net 有此目录，存放报表XML数据生成模块代码</td>    
+    </tr>
+    <tr>
+      <td width="30%" height="16">data</td>
+      <td width="108%" height="16">提供报表XML数据的网页程序，调用通用方法根据提供的SQL语句产生报表需要的XML数据，为各个例子报表提供数据。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">General</td>
+      <td width="108%" height="16">参数化使用各个报表插件，实现通用的报表查询显示、报表打印显示、报表设计等功能，主要用在Index.htm中所链接的报表。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">grf</td>
+      <td width="108%" height="16">例子用到的报表模板文件，即报表样式定义文件。</td>   
+    </tr>
+    <tr>
+      <td width="30%" height="16">Misc</td>
+      <td width="108%" height="16">一些杂项例子，请查看其中的简介文件。</td>   
+    </tr>
+  </tbody>
+</table>
+<h3><img border="0" src="arrow_yellow.gif" width="12" height="12">General目录下各个文件简介</h3>   
+<table height="65" cellSpacing="0" borderColorDark="#ffffff" cellPadding="2" width="100%" border="1">
+    <tr>
+      <td width="34%" height="16">DesignReport.aspx(jsp/php/asp)</td>
+      <td width="104%" height="16">通用报表模板设计网页，用报表设计器插件设计报表。</td>
+    </tr>
+    <tr>
+      <td width="34%" height="16">DesignReportSave.aspx(jsp/php/asp)</td>
+      <td width="104%" height="16">报表模板设计网页对应的模板保存后台网页程序。</td>
+    </tr>
+  <tr>
+      <td width="34%" height="16">DisplayReport.aspx(jsp/php/asp)</td>
+      <td width="104%" height="16">通用报表查询显示插件展现报表网页。</td>
+  </tr>
+  <tr>
+      <td width="34%" height="16">PrintReport.aspx(jsp/php/asp)</td>
+      <td width="104%" height="16">通用报表打印显示插件展现报表网页。</td>
+  </tr>
+  <tr>
+      <td width="34%" height="16">ReadReport.aspx(jsp/php/asp)</td>
+      <td width="104%" height="16">报表模板读取后台网页程序。</td>
+  </tr>
+</table>
+
+<p><img border="0" src="arrow_yellow.gif" width="12" height="12"><b>参考</b></p>
+<p><a href="s_SetupAspNetSamples.htm">运行asp.net例子</a> | <a href="s_SetupJspSamples.htm">运行jsp(java)例子</a>   
+| <a href="s_SetupAspSamples.htm">运行asp例子</a> | <a href="s_SetupPhpSamples.htm">运行php例子</a></p>   
+
+</body>
+
+</html>

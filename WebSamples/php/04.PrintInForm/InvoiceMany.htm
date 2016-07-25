@@ -1,0 +1,18 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 成批套打发票，票据头尾信息显示在分组头尾中，这样一次就可以打印多张发票</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+<style type="text/css">
+    html,body {
+        margin:0;
+        height:100%;
+    }
+</style>
+</head>
+<body style="margin:0">
+    <script type="text/javascript"> 
+	    CreatePrintViewerEx("100%", "100%", "../grf/6f.grf", "../data/xmlInvoiceMany.php", true, "");
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+﻿Object Report
+	Version='6.0.0.6'
+	Title='Grid++Report'
+	PrintAsDesignPaper=F
+	Object Font
+		Name='宋体'
+		Size=105000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+		LeftMargin=1.21708
+		RightMargin=1.16417
+	End
+	Object DetailGrid
+		CenterView=T
+		ShowColLine=F
+		ShowRowLine=F
+		Object Border
+			Styles=[]
+		End
+		Object Recordset
+			ConnectionString='Provider=Microsoft.Jet.OLEDB.4.0;\r\nUser ID=Admin;\r\nData Source=C:\\Grid++Report 6\\Samples\\Data\\Northwind.mdb'
+			QuerySQL='select * from Categories'
+			SkipQuery=T
+			Items Field
+				Item
+					Name='CategoryID'
+					Type=Integer
+				End
+				Item
+					Name='Description'
+				End
+				Item
+					Name='Picture'
+					Type=Binary
+				End
+				Item
+					Name='PictureFile'
+				End
+				Item
+					Name='CategoryName'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='Column1'
+				Width=18.6002
+			End
+		End
+		Object ColumnContent
+			Height=7.59354
+			Items ColumnContentCell
+				Item
+					Column='Column1'
+					FreeCell=T
+					Items Control
+						Item
+							Type=MemoBox
+							Name='MemoBox3'
+							Dock=Top
+							Height=0.608542
+							Object Font
+								Name='宋体'
+								Size=142500,0
+								Bold=T
+								Charset=134
+							End
+							TextAlign=MiddleCenter
+							Text='类别编号：[#CategoryID#] 类别名称：[#CategoryName#]'
+						End
+						Item
+							Type=Chart
+							Name='DetailChart'
+							Dock=Fill
+							Top=0.608542
+							PaddingLeft=8
+							PaddingRight=8
+							PaddingTop=8
+							PaddingBottom=8
+							LegendValueVisible=T
+							LegendShowSum=T
+							LegendColumnCount=2
+							GroupCount=12
+							SeriesCount=1
+							SeriesCursor=Magnify
+							LegendCursor=Finger
+							SeriesField='ProductName'
+							GroupField='TheMonth'
+							Object Recordset
+								QuerySQL='select  c.CategoryName,Month(m.OrderDate) As TheMonth,sum(d.UnitPrice*d.Quantity*(1-d.Discount)) as Amount\r\nfrom orders m inner join (OrderDetails d inner join (Products p inner join Categories c on p.CategoryID=c.CategoryID) on d.ProductID=p.ProductID)\r\non m.orderid=d.orderid\r\nwhere m.OrderDate between #1/1/97# And #12/31/97# and p.CategoryID=1\r\ngroup by c.CategoryName,Month(m.OrderDate)\r\norder by c.CategoryName,Month(m.OrderDate)'
+								Items Field
+									Item
+										Name='TheMonth'
+										Type=Integer
+									End
+									Item
+										Name='Amount'
+										Type=Float
+									End
+									Item
+										Name='ProductName'
+									End
+								End
+							End
+							Object XAxis
+								TextFormat='0.##'
+								Object CoordLinePen
+									Color=00FFC4C4
+								End
+							End
+							Object YAxis
+								TextFormat='0.##'
+								Object CoordLinePen
+									Color=00FFC4C4
+								End
+							End
+							Object Y2Axis
+								TextFormat='0.##'
+								Object CoordLinePen
+									Color=00FFC4C4
+								End
+							End
+							Items ChartSeries
+								Item
+									YValueField='Amount'
+									ValueFormat='0.##'
+								End
+							End
+						End
+					End
+				End
+			End
+		End
+		Object ColumnTitle
+			Height=0
+			RepeatStyle=OnGroupHeader
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='Column1'
+					Text='Column1'
+				End
+			End
+		End
+	End
+	Items ReportHeader
+		Item
+			Name='ReportHeader1'
+			Height=1.79917
+			Items Control
+				Item
+					Type=MemoBox
+					Name='MemoBox2'
+					Center=Horizontal
+					Left=6.35
+					Top=0.396875
+					Width=5.90021
+					Height=0.608542
+					Object Font
+						Name='宋体'
+						Size=157500,0
+						Bold=T
+						Charset=134
+					End
+					Text='图表在明细网格中例子'
+				End
+				Item
+					Type=MemoBox
+					Name='MemoBox4'
+					Center=Horizontal
+					Left=4.02167
+					Top=1.00542
+					Width=10.5569
+					Height=0.582083
+					Visible=F
+					TextAlign=MiddleCenter
+					Text='在查询显示时，双击图标序列项透视到对应的明细报表'
+				End
+			End
+		End
+	End
+End

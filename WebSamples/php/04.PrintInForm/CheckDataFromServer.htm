@@ -1,0 +1,73 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 打印支票，向报表传递参数数据</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		
+function window_onload() {
+    ReportViewer.Report.OnTextBoxGetDisplayText = TextBoxGetDisplayText;
+
+    ReportViewer.Start();
+}
+
+function  TextBoxGetDisplayText(Sender)
+{
+	//实现事件响应脚本代码
+    var Report = ReportViewer.Report;
+
+    //支票中的月日数字如果等于10或20 则要显示为"壹拾"或"贰拾"
+    //如果1x或2x，则要显示为"壹拾几"或"贰拾几"，如15为壹拾伍，28为贰拾捌
+    //而Grid++Report通过设置格式串并不能直接得到这样的数据，所以要通过 TextBoxGetDisplayText
+    //事件改变其显示文字
+    if (Sender.Name == "stMonth")
+    {
+		var Month = Report.ParameterByName("Month").AsInteger;
+		if (Month == 10)
+		{
+			Sender.DisplayText = "壹拾";
+		}
+		else if (Month > 10)
+		{
+			var RawDisplayText = Sender.DisplayText;
+			RawDisplayText = RawDisplayText.substr(0, 1) + "拾" + RawDisplayText.substr(1);
+			Sender.DisplayText = RawDisplayText;
+		}
+    }
+    else if (Sender.Name == "stDay")
+    {
+		//支票中的月日数字如果等于10或20 则要显示为"壹拾"或"贰拾"
+		//如果1x或2x，则要显示为"壹拾几"或"贰拾几"，如15为壹拾伍，28为贰拾捌
+		//而Grid++Report通过设置格式串并不能直接得到这样的数据，所以要通过 TextBoxGetDisplayText
+		//事件改变其显示文字
+		var Day = Report.ParameterByName("Day").AsInteger;
+		if (Day == 10)
+		{
+				Sender.DisplayText = "壹拾";
+		}
+		else if (Day == 20)
+		{
+				Sender.DisplayText = "贰拾";
+		}
+		else  if (Day > 10)
+		{
+			var RawDisplayText = Sender.DisplayText;
+			RawDisplayText = RawDisplayText.substr(0, 1) + "拾" + RawDisplayText.substr(1);
+			Sender.DisplayText = RawDisplayText;
+		}    
+    }
+}
+	</script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="window_onload()">
+    <script type="text/javascript"> 
+	    CreatePrintViewerEx("100%", "100%", "Check.grf", "xmlCheck.php", false, "");
+    </script>
+</body>
+</html>
