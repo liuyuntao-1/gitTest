@@ -76,6 +76,9 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datasets\DSJxc.cs">
+      <DependentUpon>DSJxc.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Datasets\DSJxc.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

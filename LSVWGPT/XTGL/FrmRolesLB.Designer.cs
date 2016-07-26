@@ -33,10 +33,10 @@ namespace LSVWGPT.XTGL
         {
             this.components = new System.ComponentModel.Container();
             Gizmox.WebGUI.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new Gizmox.WebGUI.Forms.DataGridViewCellStyle();
-            Gizmox.WebGUI.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new Gizmox.WebGUI.Forms.DataGridViewCellStyle();
             Gizmox.WebGUI.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new Gizmox.WebGUI.Forms.DataGridViewCellStyle();
-            Gizmox.WebGUI.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new Gizmox.WebGUI.Forms.DataGridViewCellStyle();
-            Gizmox.WebGUI.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new Gizmox.WebGUI.Forms.DataGridViewCellStyle();
+            Gizmox.WebGUI.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new Gizmox.WebGUI.Forms.DataGridViewCellStyle();
+            Gizmox.WebGUI.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new Gizmox.WebGUI.Forms.DataGridViewCellStyle();
+            Gizmox.WebGUI.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new Gizmox.WebGUI.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRolesLB));
             this.grpMain = new Gizmox.WebGUI.Forms.GroupBox();
             this.dgv = new Gizmox.WebGUI.Forms.DataGridView();
@@ -48,6 +48,7 @@ namespace LSVWGPT.XTGL
             this.mnuEdit = new Gizmox.WebGUI.Forms.ToolStripMenuItem();
             this.mnuDetail = new Gizmox.WebGUI.Forms.ToolStripMenuItem();
             this.mnuDel = new Gizmox.WebGUI.Forms.ToolStripMenuItem();
+            this.mnuFuncs = new Gizmox.WebGUI.Forms.ToolStripMenuItem();
             this.bds = new Gizmox.WebGUI.Forms.BindingSource(this.components);
             this.dsJckj1 = new LSVWGPT.Datasets.DSJckj();
             this.trolesTableAdapter1 = new LSVWGPT.Datasets.DSJckjTableAdapters.trolesTableAdapter();
@@ -56,7 +57,6 @@ namespace LSVWGPT.XTGL
             this.btnDetail = new Gizmox.WebGUI.Forms.Button();
             this.btnDel = new Gizmox.WebGUI.Forms.Button();
             this.btnFuncs = new Gizmox.WebGUI.Forms.Button();
-            this.mnuFuncs = new Gizmox.WebGUI.Forms.ToolStripMenuItem();
             this.grpMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds)).BeginInit();
@@ -105,9 +105,9 @@ namespace LSVWGPT.XTGL
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle13.FormatProvider = new System.Globalization.CultureInfo("zh-CN");
-            this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.FormatProvider = new System.Globalization.CultureInfo("zh-CN");
+            this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.SelectionMode = Gizmox.WebGUI.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(275, 406);
             this.dgv.TabIndex = 0;
@@ -117,7 +117,7 @@ namespace LSVWGPT.XTGL
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "dm";
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn1.HeaderText = "代码";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -126,7 +126,7 @@ namespace LSVWGPT.XTGL
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "mc";
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn2.HeaderText = "名称";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -134,7 +134,7 @@ namespace LSVWGPT.XTGL
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "qx";
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn3.HeaderText = "权限";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -194,6 +194,15 @@ namespace LSVWGPT.XTGL
             this.mnuDel.Size = new System.Drawing.Size(97, 20);
             this.mnuDel.Text = "删除";
             this.mnuDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
+            // mnuFuncs
+            // 
+            this.mnuFuncs.Image = new Gizmox.WebGUI.Common.Resources.IconResourceHandle(resources.GetString("mnuFuncs.Image"));
+            this.mnuFuncs.Name = "mnuFuncs";
+            this.mnuFuncs.Padding = new Gizmox.WebGUI.Forms.Padding(0, 0, 0, 0);
+            this.mnuFuncs.Size = new System.Drawing.Size(123, 20);
+            this.mnuFuncs.Text = "功能模块";
+            this.mnuFuncs.Click += new System.EventHandler(this.btnFuncs_Click);
             // 
             // bds
             // 
@@ -268,15 +277,6 @@ namespace LSVWGPT.XTGL
             this.btnFuncs.Text = "功能模块";
             this.btnFuncs.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.ImageBeforeText;
             this.btnFuncs.Click += new System.EventHandler(this.btnFuncs_Click);
-            // 
-            // mnuFuncs
-            // 
-            this.mnuFuncs.Image = new Gizmox.WebGUI.Common.Resources.IconResourceHandle(resources.GetString("mnuFuncs.Image"));
-            this.mnuFuncs.Name = "toolStripMenuItem2";
-            this.mnuFuncs.Padding = new Gizmox.WebGUI.Forms.Padding(0, 0, 0, 0);
-            this.mnuFuncs.Size = new System.Drawing.Size(152, 20);
-            this.mnuFuncs.Text = "功能模块";
-            this.mnuFuncs.Click += new System.EventHandler(this.btnFuncs_Click);
             // 
             // FrmRolesLB
             // 

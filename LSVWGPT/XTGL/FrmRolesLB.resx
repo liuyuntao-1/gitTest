@@ -129,6 +129,9 @@
   <data name="mnuDel.Image" xml:space="preserve">
     <value>Actions.RecDel.ICO</value>
   </data>
+  <data name="mnuFuncs.Image" xml:space="preserve">
+    <value>Actions.FuncsModule.ico</value>
+  </data>
   <data name="btnNew.Image" xml:space="preserve">
     <value>Actions.RecNew.ico</value>
   </data>
@@ -142,9 +145,6 @@
     <value>Actions.RecDel.ICO</value>
   </data>
   <data name="btnFuncs.Image" xml:space="preserve">
-    <value>Actions.FuncsModule.ico</value>
-  </data>
-  <data name="mnuFuncs.Image" xml:space="preserve">
     <value>Actions.FuncsModule.ico</value>
   </data>
 </root>
