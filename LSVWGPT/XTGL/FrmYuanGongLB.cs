@@ -59,7 +59,7 @@ namespace LSVWGPT.XTGL
 
         private void dgv_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnNew_Click(object sender, EventArgs e)

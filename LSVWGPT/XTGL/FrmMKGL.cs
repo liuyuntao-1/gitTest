@@ -46,6 +46,7 @@ namespace LSVWGPT.XTGL
             {
                 trV.ExpandAll();
                 trV.SelectedNode = trV.Nodes[0];
+                
             }
         }
 
